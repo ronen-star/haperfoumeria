@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הפרפומריה — פרסומת 78 שניות</title>
+  <!--
+    ================================================================
+    תמונות בשמים — מיקום קבצים:
+      images/women/01.jpg  → Classy Chic Girl
+      images/women/02.jpg  → Bombshell (Victoria's Secret)
+      images/women/03.jpg  → La Vie est Belle Florale (Lancôme)
+      images/women/04.jpg  → Trésor (Lancôme)
+      images/women/05.jpg  → Idôle (Lancôme)
+      images/women/06.jpg  → Poême (Lancôme)
+      images/women/07.jpg  → Amabile (Xerjoff)
+      images/women/08.jpg  → Xerjoff כחול
+      images/women/09.jpg  → Shalina Exclusive
+      images/women/10.jpg  → My Way (Giorgio Armani)
+      images/women/11.jpg  → Cristalle Eau Verte (Chanel)
+      images/women/12.jpg  → Miss Dior
+      images/women/13.jpg  → Roses de Mai (Jacques Yves)
+      images/women/14.jpg  → Born In Roma Intense Donna (Valentino)
+      images/women/15.jpg  → Omnia Crystalline (Bvlgari)
+      images/women/16.jpg  → Omnia אדום (Bvlgari)
+      images/women/17.jpg  → Omnia סגול (Bvlgari)
+      images/women/18.jpg  → Ideal Women (Casamorando)
+
+      images/men/01.jpg    → Amber Oud סגול (Al Haramain)
+      images/men/02.jpg    → Amber Oud Gold Mine (Al Haramain)
+      images/men/03.jpg    → Déclaration (Cartier)
+      images/men/04.jpg    → Liquid Brun (French Avenue)
+      images/men/05.jpg    → Invictus (Paco Rabanne)
+      images/men/06.jpg    → John Gustav Homme (Scandant)
+      images/men/07.jpg    → Acqua di Giò EDT (Armani)
+      images/men/08.jpg    → Acqua di Giò Profondo (Armani)
+      images/men/09.jpg    → Acqua di Giò Profumo (Armani)
+      images/men/10.jpg    → Acqua di Giò Absolu (Armani)
+      images/men/11.jpg    → Code Le Parfum (Armani)
+      images/men/12.jpg    → Stronger With You Absolutely (Emporio Armani)
+      images/men/13.jpg    → Luna Rossa Ocean (Prada)
+      images/men/14.jpg    → Roma Uomo (Laura Biagiotti)
+      images/men/15.jpg    → The Most Wanted (Azzaro)
+      images/men/16.jpg    → Koin (Xerjoff)
+      images/men/17.jpg    → Don (Xerjoff)
+      images/men/18.jpg    → Alexandria II Anniversary (Xerjoff)
+
+    לוגו: הפרפומריה-_לוגו.jpg (בתיקייה הראשית)
+    אודיו: audio/background.mp3  (שיר פרסומת — נוצר ב-Suno AI)
+    ================================================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --plum:       #1a082e;
+      --plum-mid:   #2d1045;
+      --plum-light: #3e1a60;
+      --neon-pink:  #ff6ec7;
+      --neon-purple:#c77dff;
+      --neon-violet:#9c27b0;
+      --white:      #f5eeff;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background: var(--plum);
+      font-family: 'Heebo', Arial, sans-serif;
+      direction: rtl;
+      color: var(--white);
+      user-select: none;
+    }
+
+    /* ── BACKGROUND ── */
+    #bg-canvas {
+      position: absolute; top:0; left:0;
+      width:100%; height:100%;
+      z-index: 1; pointer-events: none;
+    }
+    .bg-radial {
+      position: absolute; top:0; left:0; width:100%; height:100%;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 50%, rgba(156,39,176,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 15% 85%, rgba(255,110,199,.07) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 85% 15%, rgba(199,125,255,.07) 0%, transparent 50%);
+      z-index: 2; pointer-events: none;
+    }
+
+    /* ── PHASES ── */
+    .phase {
+      position: absolute; top:0; left:0;
+      width:100%; height:100%;
+      z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .7s ease;
+    }
+    .phase.visible { opacity:1; pointer-events:all; }
+
+    /* ══════════════════════════════════════
+       PHASE 1 — LOGO
+    ══════════════════════════════════════ */
+    #phase-logo { gap: 0; }
+
+    .logo-wrapper {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 18px;
+      opacity: 0; transform: scale(.5);
+      transition: opacity 1.2s cubic-bezier(.34,1.4,.64,1),
+                  transform 1.4s cubic-bezier(.34,1.4,.64,1);
+    }
+    .logo-wrapper.pop { opacity:1; transform:scale(1); }
+
+    .logo-img-box {
+      width: 340px; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #logo-img {
+      max-width:340px; max-height:200px;
+      width:auto; height:auto;
+      filter: drop-shadow(0 0 18px var(--neon-purple))
+              drop-shadow(0 0 40px var(--neon-pink))
+              drop-shadow(0 0 80px rgba(156,39,176,.5));
+    }
+    .logo-text-fallback {
+      display: none;
+      font-size: 3.2rem; font-weight:900;
+      color: var(--white);
+      text-shadow: 0 0 12px var(--neon-pink), 0 0 25px var(--neon-purple), 0 0 60px var(--neon-violet);
+      padding: 18px 40px;
+      border: 2px solid var(--neon-purple);
+      border-radius: 12px;
+      background: rgba(62,26,96,.7);
+      box-shadow: 0 0 30px rgba(199,125,255,.3), inset 0 0 40px rgba(199,125,255,.1);
+    }
+
+    .logo-tagline {
+      font-size: 1.5rem; font-weight:300;
+      color: var(--neon-purple); letter-spacing: 10px;
+      text-shadow: 0 0 10px var(--neon-purple);
+      opacity:0; transform:translateY(12px);
+      transition: opacity .8s ease .5s, transform .8s ease .5s;
+    }
+    .logo-wrapper.pop .logo-tagline { opacity:1; transform:translateY(0); }
+
+    .logo-address {
+      font-size: 1rem; color: rgba(255,255,255,.55);
+      letter-spacing: 4px;
+      opacity:0;
+      transition: opacity .8s ease .9s;
+    }
+    .logo-wrapper.pop .logo-address { opacity:1; }
+
+    /* ══════════════════════════════════════
+       PHASE 2 — GALLERY
+    ══════════════════════════════════════ */
+    #phase-gallery {
+      justify-content: flex-start;
+      padding-top: 28px; gap: 10px;
+    }
+
+    .gallery-heading {
+      font-size: 1.5rem; font-weight:700;
+      color: var(--neon-purple);
+      text-shadow: 0 0 10px var(--neon-purple);
+      letter-spacing: 4px;
+    }
+
+    .marquee-row {
+      width: 1280px; height: 285px;
+      overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .marquee-row::before, .marquee-row::after {
+      content:''; position:absolute; top:0; height:100%;
+      width:90px; z-index:5; pointer-events:none;
+    }
+    .marquee-row::before {
+      right:0;
+      background: linear-gradient(to left, var(--plum) 0%, transparent 100%);
+    }
+    .marquee-row::after {
+      left:0;
+      background: linear-gradient(to right, var(--plum) 0%, transparent 100%);
+    }
+
+    .row-badge {
+      position:absolute; right:12px; top:8px;
+      font-size:.8rem; font-weight:700;
+      padding: 4px 14px; border-radius:20px;
+      z-index: 6;
+    }
+    .row-badge.women {
+      background: rgba(255,110,199,.15);
+      color: var(--neon-pink);
+      border: 1px solid rgba(255,110,199,.5);
+    }
+    .row-badge.men {
+      background: rgba(130,170,255,.15);
+      color: #8ab4ff;
+      border: 1px solid rgba(130,170,255,.5);
+    }
+
+    .marquee-track {
+      display: flex; direction: ltr; /* LTR for consistent marquee */
+      gap: 14px;
+      position: absolute; left:0; top:12px;
+      height: calc(100% - 12px);
+      will-change: transform;
+    }
+
+    /* ── Perfume Card ── */
+    .perfume-card {
+      flex: 0 0 190px; height: 250px;
+      background: linear-gradient(155deg, rgba(62,26,96,.95) 0%, rgba(26,8,46,.98) 100%);
+      border-radius: 14px;
+      display: flex; flex-direction:column;
+      align-items:center; padding:10px 8px 8px;
+      position:relative; overflow:hidden;
+    }
+    .perfume-card::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(199,125,255,.7), transparent);
+    }
+    .perfume-card.w-card {
+      border: 1px solid rgba(255,110,199,.35);
+      box-shadow: 0 0 14px rgba(255,110,199,.12), inset 0 0 20px rgba(255,110,199,.04);
+    }
+    .perfume-card.m-card {
+      border: 1px solid rgba(130,170,255,.35);
+      box-shadow: 0 0 14px rgba(130,170,255,.12), inset 0 0 20px rgba(130,170,255,.04);
+    }
+
+    .card-img {
+      width:160px; height:172px;
+      border-radius:8px; overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(45,16,69,.8); flex-shrink:0;
+    }
+    .card-img img { width:100%; height:100%; object-fit:contain; }
+    .card-img .placeholder {
+      display:none;
+      width:100%; height:100%;
+      background: linear-gradient(135deg, rgba(80,20,120,.5), rgba(26,8,46,.85));
+      align-items:center; justify-content:center;
+      font-size:4rem;
+    }
+
+    .card-name {
+      font-size:.76rem; font-weight:700;
+      text-align:center; color:var(--white);
+      line-height:1.3; max-width:170px;
+      margin-top:7px;
+      flex:1; display:flex; align-items:center; justify-content:center;
+    }
+    .card-brand {
+      font-size:.66rem; color:var(--neon-purple);
+      text-align:center; opacity:.85;
+    }
+
+    /* ══════════════════════════════════════
+       PHASE 3 — AIRPLANE
+    ══════════════════════════════════════ */
+    #phase-airplane { overflow:hidden; }
+
+    .clouds {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      pointer-events:none;
+    }
+    .cloud {
+      position:absolute; border-radius:50%;
+      background:rgba(199,125,255,.04);
+      filter: blur(40px);
+    }
+
+    #airplane-el {
+      position:absolute;
+      top:22%;
+      /* animation set from JS */
+    }
+
+    .plane-glow {
+      position:absolute;
+      top:34px; left:412px;
+      width:52px; height:13px;
+      background: linear-gradient(90deg, rgba(255,160,0,1) 0%, rgba(255,90,0,.55) 50%, transparent 100%);
+      border-radius:50%;
+      filter:blur(5px);
+      animation: flameFl .09s linear infinite alternate;
+    }
+    @keyframes flameFl {
+      from { opacity:.75; transform:scaleY(.8) scaleX(1); }
+      to   { opacity:1;   transform:scaleY(1.5) scaleX(1.2); }
+    }
+
+    #bottles-container {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      pointer-events:none; z-index:15;
+    }
+
+    .bottle-drop {
+      position:absolute;
+      display:flex; flex-direction:column; align-items:center;
+      animation: bottleFall linear forwards;
+      pointer-events:none;
+    }
+    .bottle-card {
+      width:52px; height:68px;
+      border-radius:8px; overflow:hidden;
+      border:1px solid rgba(199,125,255,.7);
+      box-shadow:0 0 10px rgba(199,125,255,.5), 0 3px 8px rgba(0,0,0,.6);
+      background:rgba(26,8,46,.9);
+      margin-top:1px;
+    }
+    .bottle-card img { width:100%; height:100%; object-fit:contain; }
+    @keyframes bottleFall {
+      0%   { transform: translateY(0)    translateX(0)    rotate(-3deg); opacity:1; }
+      20%  { transform: translateY(100px) translateX(14px) rotate(3deg);  opacity:1; }
+      40%  { transform: translateY(210px) translateX(-9px) rotate(-4deg); opacity:1; }
+      60%  { transform: translateY(320px) translateX(16px) rotate(2deg);  opacity:1; }
+      80%  { transform: translateY(420px) translateX(-6px) rotate(-3deg); opacity:.8; }
+      100% { transform: translateY(510px) translateX(8px)  rotate(2deg);  opacity:0; }
+    }
+
+    .plane-slogan {
+      position:absolute; bottom:16%; left:0; right:0;
+      text-align:center;
+      font-size:2.8rem; font-weight:900;
+      text-shadow: 0 0 12px var(--neon-pink), 0 0 25px var(--neon-purple), 0 0 55px var(--neon-violet);
+      opacity:0; transition: opacity 1.2s ease;
+      z-index:20;
+    }
+    .plane-slogan.show { opacity:1; }
+
+    /* ══════════════════════════════════════
+       PHASE 4 — CONTACT
+    ══════════════════════════════════════ */
+    #phase-contact {
+      gap: 18px;
+      background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(156,39,176,.18) 0%, transparent 70%);
+    }
+
+    .contact-logo-box {
+      width:230px; height:140px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    #contact-logo-img {
+      max-width:230px; max-height:140px;
+      width:auto; height:auto;
+      filter: drop-shadow(0 0 14px var(--neon-purple)) drop-shadow(0 0 28px var(--neon-pink));
+    }
+    .contact-logo-fallback {
+      display:none; font-size:2.4rem; font-weight:900;
+      text-shadow: 0 0 14px var(--neon-pink), 0 0 28px var(--neon-purple);
+    }
+
+    .final-slogan {
+      font-size:2.9rem; font-weight:900; text-align:center;
+      line-height:1.25;
+      text-shadow: 0 0 10px var(--neon-pink), 0 0 22px var(--neon-pink), 0 0 45px var(--neon-purple);
+      opacity:0; transform:translateY(20px);
+      transition: opacity .9s ease .3s, transform .9s ease .3s;
+    }
+    #phase-contact.visible .final-slogan { opacity:1; transform:translateY(0); }
+
+    .neon-divider {
+      width:380px; height:2px;
+      background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-pink), var(--neon-purple), transparent);
+      box-shadow: 0 0 8px var(--neon-purple), 0 0 18px rgba(199,125,255,.3);
+    }
+
+    .contact-block {
+      text-align:center; display:flex; flex-direction:column; gap:6px;
+      opacity:0; transform:translateY(15px);
+      transition: opacity .9s ease .7s, transform .9s ease .7s;
+    }
+    #phase-contact.visible .contact-block { opacity:1; transform:translateY(0); }
+
+    .c-phone {
+      font-size:3.2rem; font-weight:900;
+      direction:ltr; color:var(--neon-purple);
+      text-shadow: 0 0 14px var(--neon-purple), 0 0 30px rgba(199,125,255,.5);
+      letter-spacing:5px;
+    }
+    .c-address { font-size:1.5rem; color:rgba(255,255,255,.9); }
+    .c-city {
+      font-size:1.1rem; color:var(--neon-pink);
+      opacity:.8; letter-spacing:3px;
+    }
+
+    .bottom-tagline {
+      font-size:1.2rem; color:var(--neon-purple); opacity:.85;
+      letter-spacing:3px;
+      opacity:0; transition: opacity .9s ease 1.2s;
+    }
+    #phase-contact.visible .bottom-tagline { opacity:.85; }
+
+    /* ══════════════════════════════════════
+       SLOGAN OVERLAY
+    ══════════════════════════════════════ */
+    #slogan-overlay {
+      position:absolute; bottom:22px; left:50%;
+      transform: translateX(-50%);
+      z-index:50; pointer-events:none;
+      text-align:center; width:90%; max-width:920px;
+    }
+    #slogan-text {
+      display:inline-block;
+      font-size:2rem; font-weight:700;
+      color:var(--white);
+      text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-purple);
+      padding: 11px 38px;
+      background: rgba(26,8,46,.78);
+      backdrop-filter: blur(8px);
+      border-radius:50px;
+      border:1px solid rgba(199,125,255,.3);
+      box-shadow: 0 0 20px rgba(199,125,255,.2), 0 0 40px rgba(255,110,199,.1);
+      opacity:0; transform:translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    #slogan-text.show { opacity:1; transform:translateY(0); }
+
+    /* ══════════════════════════════════════
+       PROGRESS BAR
+    ══════════════════════════════════════ */
+    #progress-bar {
+      position:absolute; bottom:0; left:0;
+      width:0%; height:3px;
+      background: linear-gradient(90deg, var(--neon-violet), var(--neon-purple), var(--neon-pink));
+      box-shadow: 0 0 8px var(--neon-pink), 0 0 18px rgba(255,110,199,.4);
+      z-index:100;
+    }
+
+    /* ══════════════════════════════════════
+       PLAY OVERLAY
+    ══════════════════════════════════════ */
+    #play-overlay {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      background: linear-gradient(135deg, rgba(16,4,28,.97) 0%, rgba(45,16,69,.96) 100%);
+      z-index:200;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:22px; cursor:pointer;
+    }
+
+    .ov-logo-box {
+      width:280px; height:160px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    #ov-logo-img {
+      max-width:280px; max-height:160px;
+      filter: drop-shadow(0 0 18px var(--neon-purple)) drop-shadow(0 0 36px var(--neon-pink));
+    }
+    .ov-logo-fallback {
+      display:none; font-size:2.8rem; font-weight:900;
+      text-shadow: 0 0 14px var(--neon-pink), 0 0 28px var(--neon-purple);
+    }
+
+    .ov-subtitle {
+      font-size:1.6rem; font-weight:300;
+      color:rgba(255,255,255,.75); letter-spacing:6px;
+    }
+
+    .play-btn {
+      width:88px; height:88px; border-radius:50%;
+      border:2px solid var(--neon-purple);
+      background: rgba(199,125,255,.15);
+      display:flex; align-items:center; justify-content:center;
+      font-size:2.4rem; padding-left:6px;
+      box-shadow: 0 0 24px rgba(199,125,255,.45), 0 0 50px rgba(255,110,199,.2),
+                  inset 0 0 20px rgba(199,125,255,.1);
+      animation: pulsePly 2s ease-in-out infinite;
+    }
+    @keyframes pulsePly {
+      0%,100% { box-shadow: 0 0 24px rgba(199,125,255,.45), 0 0 50px rgba(255,110,199,.2); transform:scale(1); }
+      50%      { box-shadow: 0 0 40px rgba(199,125,255,.65), 0 0 80px rgba(255,110,199,.35); transform:scale(1.06); }
+    }
+
+    .ov-hint { font-size:.85rem; color:rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+
+<!-- Background -->
+<canvas id="bg-canvas"></canvas>
+<div class="bg-radial"></div>
+
+<!-- ── Play Overlay ── -->
+<div id="play-overlay" onclick="startAnimation()">
+  <div class="ov-logo-box">
+    <img id="ov-logo-img" src="הפרפומריה-_לוגו.jpg" alt="הפרפומריה"
+         onerror="this.style.display='none'; document.getElementById('ov-logo-fallback').style.display='block'">
+    <span class="ov-logo-fallback" id="ov-logo-fallback">הפרפומריה</span>
+  </div>
+  <div class="ov-subtitle">כפר סבא</div>
+  <div class="play-btn">▶</div>
+  <div class="ov-hint">לחץ להפעלה — 78 שניות</div>
+</div>
+
+<!-- ── Phase 1: Logo ── -->
+<div id="phase-logo" class="phase">
+  <div class="logo-wrapper" id="logo-wrapper">
+    <div class="logo-img-box">
+      <img id="logo-img" src="הפרפומריה-_לוגו.jpg" alt="הפרפומריה"
+           onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block'">
+      <span class="logo-text-fallback" id="logo-fallback">הפרפומריה</span>
+    </div>
+    <div class="logo-tagline">כפר סבא</div>
+    <div class="logo-address">רחוב ויצמן 74</div>
+  </div>
+</div>
+
+<!-- ── Phase 2: Gallery ── -->
+<div id="phase-gallery" class="phase">
+  <div class="gallery-heading">המגוון שלנו</div>
+
+  <div class="marquee-row" id="row-women">
+    <span class="row-badge women">לנשים 💜</span>
+    <div class="marquee-track" id="track-women"></div>
+  </div>
+
+  <div class="marquee-row" id="row-men">
+    <span class="row-badge men">לגברים 💙</span>
+    <div class="marquee-track" id="track-men"></div>
+  </div>
+</div>
+
+<!-- ── Phase 3: Airplane ── -->
+<div id="phase-airplane" class="phase">
+  <div class="clouds">
+    <div class="cloud" style="width:500px;height:220px;top:5%;left:10%"></div>
+    <div class="cloud" style="width:350px;height:180px;top:55%;right:8%"></div>
+    <div class="cloud" style="width:280px;height:140px;top:35%;left:55%"></div>
+  </div>
+
+  <div id="airplane-el">
+    <div style="position:relative">
+      <svg viewBox="0 0 580 175" xmlns="http://www.w3.org/2000/svg" width="460">
+        <defs>
+          <filter id="ng" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Fuselage: top-bright, bottom-dark (3-D cylinder feel) -->
+          <linearGradient id="fg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#5c2a90"/>
+            <stop offset="30%"  stop-color="#4a1a78"/>
+            <stop offset="100%" stop-color="#28094c"/>
+          </linearGradient>
+          <!-- Wing / fin gradient -->
+          <linearGradient id="wg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#4a1a78"/>
+            <stop offset="100%" stop-color="#1c0638"/>
+          </linearGradient>
+          <!-- Engine nacelle gradient (top-bright) -->
+          <linearGradient id="eg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#5a2a8a"/>
+            <stop offset="100%" stop-color="#240a40"/>
+          </linearGradient>
+          <!-- Nose-sheen overlay (metallic highlight) -->
+          <linearGradient id="ns" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="rgba(100,55,160,.55)"/>
+            <stop offset="40%"  stop-color="rgba(120,65,190,.25)"/>
+            <stop offset="100%" stop-color="rgba(80,35,130,.05)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ══ WING (behind fuselage) ══ -->
+        <!-- Swept wing root→tip, low-mid mount -->
+        <path d="M 234 111 L 280 168 L 408 168 L 358 111 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1.2"/>
+        <!-- Winglet (upturned tip) -->
+        <path d="M 406 168 L 428 140 L 410 165 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1"/>
+        <!-- Leading-edge highlight -->
+        <path d="M 234 111 L 280 168" fill="none" stroke="rgba(199,125,255,.3)" stroke-width="1.4"/>
+        <!-- Wing-body fairing blob -->
+        <path d="M 230 112 Q 258 118 286 118 Q 322 118 362 112"
+              fill="none" stroke="rgba(199,125,255,.16)" stroke-width="4"/>
+
+        <!-- ══ ENGINE PYLON (short strut) ══ -->
+        <path d="M 438 92 L 445 68 L 458 68 L 453 91 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="0.8"/>
+
+        <!-- ══ ENGINE NACELLE (aft-mounted, CF34 style) ══ -->
+        <!-- Main nacelle body — elongated oval, above fuselage top -->
+        <path d="M 390 56
+                 Q 405 44, 455 43
+                 Q 496 43, 520 55
+                 Q 526 59, 525 63
+                 Q 524 67, 520 69
+                 Q 496 75, 455 76
+                 Q 405 75, 390 70
+                 Q 383 66, 383 63
+                 Q 383 58, 390 56 Z"
+              fill="url(#eg)" stroke="#c77dff" stroke-width="1"/>
+        <!-- Engine upper-surface highlight (3-D) -->
+        <path d="M 400 45 Q 455 42 518 56"
+              fill="none" stroke="rgba(199,125,255,.22)" stroke-width="1.5"/>
+        <!-- Large circular intake (key Challenger feature) -->
+        <ellipse cx="393" cy="63" rx="17" ry="17"
+                 fill="#07021a" stroke="#c77dff" stroke-width="1.4"/>
+        <ellipse cx="393" cy="63" rx="10" ry="10"
+                 fill="#120428" stroke="rgba(199,125,255,.38)" stroke-width="0.8"/>
+        <!-- Intake fan-face cross-hairs -->
+        <line x1="393" y1="53" x2="393" y2="73" stroke="rgba(199,125,255,.18)" stroke-width="0.8"/>
+        <line x1="383" y1="63" x2="403" y2="63" stroke="rgba(199,125,255,.18)" stroke-width="0.8"/>
+        <!-- Exhaust nozzle cone -->
+        <path d="M 520 55 Q 528 59, 530 63 Q 528 67, 520 69 L 527 63 Z"
+              fill="#07021a" stroke="#c77dff" stroke-width="0.8"/>
+
+        <!-- ══ FUSELAGE ══ -->
+        <path d="M 18 94
+                 C 42 80, 74 73, 104 72
+                 L 456 72
+                 Q 504 72 525 86
+                 Q 530 90 528 94
+                 Q 530 98 525 102
+                 Q 504 110 456 110
+                 L 104 110
+                 C 74 110, 42 108, 18 94 Z"
+              fill="url(#fg)" stroke="#c77dff" stroke-width="1.5"/>
+        <!-- Top specular highlight (convex cylinder illusion) -->
+        <path d="M 34 87 C 68 81, 96 79, 124 79 L 446 79 Q 474 79 498 85"
+              fill="none" stroke="rgba(199,125,255,.24)" stroke-width="3.5"/>
+        <!-- Belly shadow -->
+        <path d="M 34 101 C 68 106, 96 108, 124 108 L 446 108 Q 476 108 500 102"
+              fill="none" stroke="rgba(0,0,20,.22)" stroke-width="5"/>
+        <!-- Nose metallic sheen -->
+        <path d="M 18 94 C 42 80, 74 73, 104 72
+                 C 92 81, 66 90, 52 94
+                 C 66 98, 92 106, 104 110
+                 C 74 110, 42 108, 18 94 Z"
+              fill="url(#ns)" opacity=".55"/>
+
+        <!-- ══ COCKPIT (nose drooped, two windshield panels) ══ -->
+        <!-- Radome / nose cone tint -->
+        <path d="M 18 94 C 30 88, 42 84, 54 82
+                 C 42 90, 30 98, 18 94 Z"
+              fill="rgba(18,6,38,.65)" stroke="#c77dff" stroke-width="0.5"/>
+        <!-- Main (forward) windshield -->
+        <path d="M 50 91 L 78 80 L 92 84 L 66 96 Z"
+              fill="#162e4a" stroke="#4d88bb" stroke-width="0.9" opacity=".94"/>
+        <!-- Side windshield panel -->
+        <path d="M 78 80 L 108 76 L 118 80 L 92 84 Z"
+              fill="#1a4060" stroke="#3d6e99" stroke-width="0.8" opacity=".86"/>
+        <!-- Divider pillar -->
+        <line x1="92" y1="84" x2="78" y2="80" stroke="#336688" stroke-width="1"/>
+
+        <!-- ══ VERTICAL FIN (tall, swept — T-tail) ══ -->
+        <path d="M 480 72 L 508 13 L 545 72 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1"/>
+        <!-- Fin trailing-edge highlight -->
+        <path d="M 508 13 L 545 72" fill="none" stroke="rgba(199,125,255,.28)" stroke-width="1.2"/>
+
+        <!-- ══ T-TAIL HORIZONTAL STABILIZER ══ -->
+        <path d="M 470 18 L 508 11 L 576 22 L 572 34 L 508 25 L 473 31 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1"/>
+        <!-- H-stab leading-edge highlight -->
+        <path d="M 470 18 L 508 11 L 576 22"
+              fill="none" stroke="rgba(199,125,255,.28)" stroke-width="1.2"/>
+
+        <!-- ══ CABIN WINDOWS (rectangular, evenly spaced) ══ -->
+        <rect x="124" y="79" width="13" height="9" rx="2.5" fill="#163a56" stroke="#6899aa" stroke-width="0.7" opacity=".9"/>
+        <rect x="143" y="79" width="13" height="9" rx="2.5" fill="#163a56" stroke="#6899aa" stroke-width="0.7" opacity=".9"/>
+        <rect x="162" y="79" width="13" height="9" rx="2.5" fill="#163a56" stroke="#6899aa" stroke-width="0.7" opacity=".9"/>
+        <rect x="181" y="79" width="13" height="9" rx="2.5" fill="#6c22bb" stroke="#9955cc" stroke-width="0.7" opacity=".6"/>
+        <rect x="200" y="79" width="13" height="9" rx="2.5" fill="#6c22bb" stroke="#9955cc" stroke-width="0.7" opacity=".6"/>
+        <rect x="219" y="79" width="13" height="9" rx="2.5" fill="#6c22bb" stroke="#9955cc" stroke-width="0.7" opacity=".6"/>
+
+        <!-- ══ LOGO ══ -->
+        <text x="348" y="95" text-anchor="middle"
+              font-size="18" font-weight="900" fill="white"
+              font-family="Heebo, Arial" filter="url(#ng)">הפרפומריה</text>
+      </svg>
+      <div class="plane-glow"></div>
+    </div>
+  </div>
+
+  <div id="bottles-container"></div>
+  <div class="plane-slogan" id="plane-slogan">מכל העולם — אצלנו</div>
+</div>
+
+<!-- ── Phase 4: Contact ── -->
+<div id="phase-contact" class="phase">
+  <div class="contact-logo-box">
+    <img id="contact-logo-img" src="הפרפומריה-_לוגו.jpg" alt="הפרפומריה"
+         onerror="this.style.display='none'; document.getElementById('contact-logo-fallback').style.display='block'">
+    <span class="contact-logo-fallback" id="contact-logo-fallback">הפרפומריה</span>
+  </div>
+
+  <div class="final-slogan">
+    הבושם שחיפשת<br>כאן, בשבילך
+  </div>
+
+  <div class="neon-divider"></div>
+
+  <div class="contact-block">
+    <div class="c-phone">09-9544888</div>
+    <div class="c-address">רחוב ויצמן 74</div>
+    <div class="c-city">כפר סבא</div>
+  </div>
+
+  <div class="neon-divider"></div>
+
+  <div class="bottom-tagline">תרגיש &nbsp;·&nbsp; תריח &nbsp;·&nbsp; תתאהב</div>
+</div>
+
+<!-- ── Slogan Overlay ── -->
+<div id="slogan-overlay">
+  <div id="slogan-text"></div>
+</div>
+
+<!-- ── Progress Bar ── -->
+<div id="progress-bar"></div>
+
+<script>
+/* ====================================================
+   DATA
+==================================================== */
+const PERFUMES = {
+  women: [
+    { name:"Classy Chic Girl",                  brand:"" },
+    { name:"Bombshell",                          brand:"Victoria's Secret" },
+    { name:"La Vie est Belle Florale",           brand:"Lancôme" },
+    { name:"Trésor",                             brand:"Lancôme" },
+    { name:"Idôle",                              brand:"Lancôme" },
+    { name:"Poême",                              brand:"Lancôme" },
+    { name:"Amabile",                            brand:"Xerjoff" },
+    { name:"Xerjoff כחול",                       brand:"Xerjoff" },
+    { name:"Shalina Exclusive",                  brand:"" },
+    { name:"My Way",                             brand:"Giorgio Armani" },
+    { name:"Cristalle Eau Verte",                brand:"Chanel" },
+    { name:"Miss Dior",                          brand:"Dior" },
+    { name:"Roses de Mai",                       brand:"Jacques Yves" },
+    { name:"Born In Roma Intense Donna",         brand:"Valentino" },
+    { name:"Omnia Crystalline",                  brand:"Bvlgari" },
+    { name:"Omnia אדום",                         brand:"Bvlgari" },
+    { name:"Omnia סגול",                         brand:"Bvlgari" },
+    { name:"Ideal Women",                        brand:"Casamorando" },
+  ],
+  men: [
+    { name:"Amber Oud סגול",                     brand:"Al Haramain" },
+    { name:"Amber Oud Gold Mine",                brand:"Al Haramain" },
+    { name:"Déclaration",                        brand:"Cartier" },
+    { name:"Liquid Brun",                        brand:"French Avenue" },
+    { name:"Invictus",                           brand:"Paco Rabanne" },
+    { name:"John Gustav Homme",                  brand:"Scandant" },
+    { name:"Acqua di Giò EDT",                   brand:"Armani" },
+    { name:"Acqua di Giò Profondo",              brand:"Armani" },
+    { name:"Acqua di Giò Profumo",               brand:"Armani" },
+    { name:"Acqua di Giò Absolu",                brand:"Armani" },
+    { name:"Code Le Parfum",                     brand:"Armani" },
+    { name:"Stronger With You Absolutely",       brand:"Emporio Armani" },
+    { name:"Luna Rossa Ocean",                   brand:"Prada" },
+    { name:"Roma Uomo",                          brand:"Laura Biagiotti" },
+    { name:"The Most Wanted",                    brand:"Azzaro" },
+    { name:"Koin",                               brand:"Xerjoff" },
+    { name:"Don",                                brand:"Xerjoff" },
+    { name:"Alexandria II Anniversary",          brand:"Xerjoff" },
+  ]
+};
+
+const SLOGANS = [
+  "הריח שלך, הסיפור שלך",
+  "מכל העולם — אצלנו",
+  "בושם לכל רגע, מגוון לכל אחד",
+  "המותגים הגדולים בעולם — במחיר מפתיע",
+  "תרגיש. תריח. תתאהב.",
+  "הבושם שחיפשת — כאן, בשבילך",
+  "הניחוח שמדבר אליך",
+];
+
+/* ====================================================
+   TIMELINE  (ms)
+==================================================== */
+const DURATION = 77578;
+const TIMELINE = [
+  { at:     0, fn: () => { showPhase('phase-logo'); setTimeout(()=> document.getElementById('logo-wrapper').classList.add('pop'), 80); } },
+  { at:  6400, fn: () => { transitionPhase('phase-logo','phase-gallery'); buildGallery(); setTimeout(startMarquee, 550); } },
+  { at: 10000, fn: () => showSlogan(0) },
+  { at: 16900, fn: () => showSlogan(1) },
+  { at: 23700, fn: () => showSlogan(2) },
+  { at: 31000, fn: () => showSlogan(3) },
+  { at: 38800, fn: () => showSlogan(4) },
+  { at: 45200, fn: () => { transitionPhase('phase-gallery','phase-airplane'); setTimeout(startAirplane, 450); } },
+  { at: 54300, fn: () => startDroppingBottles() },
+  { at: 57500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
+  { at: 62100, fn: () => showSlogan(5) },
+  { at: 64800, fn: () => transitionPhase('phase-airplane','phase-contact') },
+  { at: 69800, fn: () => showSlogan(6) },
+  { at: 72500, fn: () => { document.body.style.transition = 'opacity 5s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
+];
+
+/* ====================================================
+   STATE
+==================================================== */
+let startTime = null;
+let rafId     = null;
+const fired   = new Set();
+let galleryBuilt  = false;
+let marqueeActive = false;
+const marqueeRAFs = [];
+
+/* ====================================================
+   START
+==================================================== */
+function startAnimation() {
+  document.getElementById('play-overlay').style.display = 'none';
+  initParticles();
+  initBackgroundMusic();
+
+  fired.clear();
+  galleryBuilt  = false;
+  marqueeActive = false;
+
+  rafId = requestAnimationFrame(function tick(ts) {
+    if (!startTime) startTime = ts;
+    const el = ts - startTime;
+
+    // progress bar
+    document.getElementById('progress-bar').style.width = Math.min(el/DURATION*100, 100) + '%';
+
+    for (const ev of TIMELINE) {
+      if (!fired.has(ev.at) && el >= ev.at) {
+        fired.add(ev.at);
+        ev.fn();
+      }
+    }
+    if (el < DURATION + 1000) rafId = requestAnimationFrame(tick);
+  });
+}
+
+/* ====================================================
+   PHASE HELPERS
+==================================================== */
+function showPhase(id) { document.getElementById(id).classList.add('visible'); }
+function hidePhase(id) { document.getElementById(id).classList.remove('visible'); }
+function transitionPhase(from, to) {
+  hidePhase(from);
+  setTimeout(()=> showPhase(to), 420);
+}
+
+/* ====================================================
+   SLOGAN
+==================================================== */
+let sloganTimer = null;
+function showSlogan(idx) {
+  const el = document.getElementById('slogan-text');
+  el.classList.remove('show');
+  clearTimeout(sloganTimer);
+  setTimeout(()=>{
+    el.textContent = SLOGANS[idx];
+    el.classList.add('show');
+    sloganTimer = setTimeout(()=> el.classList.remove('show'), 3800);
+  }, 320);
+}
+
+/* ====================================================
+   GALLERY
+==================================================== */
+function buildGallery() {
+  if (galleryBuilt) return;
+  galleryBuilt = true;
+  buildTrack('track-women', PERFUMES.women, 'w-card', '🌸', 'women');
+  buildTrack('track-men',   PERFUMES.men,   'm-card', '💙', 'men');
+}
+
+function buildTrack(trackId, items, cardClass, fallbackEmoji, dir) {
+  const track = document.getElementById(trackId);
+  track.innerHTML = '';
+  const list = [...items, ...items]; // duplicate for seamless loop
+  list.forEach((p, i) => {
+    const idx  = (i % items.length) + 1;
+    const file = `images/${dir}/${String(idx).padStart(2,'0')}.jpg`;
+    const card = document.createElement('div');
+    card.className = `perfume-card ${cardClass}`;
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${file}" alt="${p.name}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder">${fallbackEmoji}</div>
+      </div>
+      <div class="card-name">${p.name}</div>
+      ${p.brand ? `<div class="card-brand">${p.brand}</div>` : ''}
+    `;
+    track.appendChild(card);
+  });
+}
+
+/* ====================================================
+   MARQUEE
+==================================================== */
+function startMarquee() {
+  if (marqueeActive) return;
+  marqueeActive = true;
+
+  // Women row slightly faster, men slightly slower for visual variety
+  animateRow('track-women', 40);
+  animateRow('track-men',   45);
+}
+
+function animateRow(trackId, durationSec) {
+  const track = document.getElementById(trackId);
+  const halfW = track.scrollWidth / 2; // single set width
+  let offset = 0, last = null;
+  const pps = halfW / durationSec;
+
+  function frame(ts) {
+    if (!last) last = ts;
+    const dt = (ts - last) / 1000;
+    last = ts;
+    offset += pps * dt;
+    if (offset >= halfW) offset = 0;
+    track.style.transform = `translateX(-${offset}px)`;
+    marqueeRAFs.push(requestAnimationFrame(frame));
+  }
+  marqueeRAFs.push(requestAnimationFrame(frame));
+}
+
+/* ====================================================
+   AIRPLANE
+==================================================== */
+function startAirplane() {
+  const el = document.getElementById('airplane-el');
+  el.style.cssText = 'position:absolute; top:22%; left:1380px;';
+  let start = null;
+  const dist = 1380 + 500;
+  const dur  = 22000; // ms — slow elegant flight
+
+  function frame(ts) {
+    if (!start) start = ts;
+    const progress = (ts - start) / dur;
+    if (progress <= 1) {
+      el.style.left = (1380 - progress * dist) + 'px';
+      requestAnimationFrame(frame);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ====================================================
+   DROPPING BOTTLES (parachuted perfume images)
+==================================================== */
+function startDroppingBottles() {
+  const container = document.getElementById('bottles-container');
+  const planeEl   = document.getElementById('airplane-el');
+  const imgs = [];
+  for (let i = 1; i <= 18; i++) {
+    imgs.push(`images/women/${String(i).padStart(2,'0')}.jpg`);
+    imgs.push(`images/men/${String(i).padStart(2,'0')}.jpg`);
+  }
+  const planeBaseY = 0.22 * 720 + 98; // nominal belly
+  let count = 0;
+
+  function dropOne() {
+    if (count >= 22) return;
+    count++;
+    const planeLeft = parseFloat(planeEl.style.left) || 400;
+    // Asymmetric spread: wide horizontal scatter, random vertical offset
+    const x   = planeLeft + 60 + Math.random() * 320;
+    const y   = planeBaseY + (Math.random() * 60 - 18);
+    const src = imgs[Math.floor(Math.random() * imgs.length)];
+    const dur = (4.5 + Math.random() * 3.5).toFixed(2);
+    const sc  = (0.72 + Math.random() * 0.55).toFixed(2);
+
+    const b = document.createElement('div');
+    b.className = 'bottle-drop';
+    b.style.cssText = `left:${x}px;top:${y}px;animation-duration:${dur}s;transform-origin:top center;scale:${sc};`;
+    b.innerHTML = `
+      <svg viewBox="0 0 100 80" width="85" height="68" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hemispherical canopy with scalloped cells -->
+        <path d="M 8 57 Q 6 8 50 5 Q 94 8 92 57
+                 Q 85 49, 78 57 Q 71 49, 64 57 Q 57 49, 50 57
+                 Q 43 49, 36 57 Q 29 49, 22 57 Q 15 49, 8 57 Z"
+              fill="rgba(199,125,255,.22)" stroke="#c77dff" stroke-width="1.5"/>
+        <!-- Cell dividers -->
+        <line x1="22" y1="57" x2="19" y2="13" stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="36" y1="57" x2="34" y2="7"  stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="50" y1="57" x2="50" y2="5"  stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="64" y1="57" x2="66" y2="7"  stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="78" y1="57" x2="81" y2="13" stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <!-- Highlight arc -->
+        <path d="M 16 34 Q 50 19 84 34" fill="none" stroke="rgba(199,125,255,.28)" stroke-width="1.5"/>
+        <!-- Many suspension lines from canopy bottom to harness (like real parachute) -->
+        <line x1="8"  y1="56" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="15" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="22" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="29" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="36" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="43" y1="57" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="50" y1="57" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="57" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="64" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="71" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="78" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="85" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="92" y1="56" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <!-- Harness connector (slider) -->
+        <rect x="38" y="78" width="24" height="4" rx="2"
+              fill="rgba(255,110,199,.35)" stroke="#ff6ec7" stroke-width="0.8"/>
+      </svg>
+      <div class="bottle-card"><img src="${src}" alt="" loading="lazy"></div>`;
+    container.appendChild(b);
+    setTimeout(()=> b.remove(), 10000);
+
+    // Schedule next drop with random interval (not uniform diagonal)
+    const nextDelay = 500 + Math.random() * 700;
+    setTimeout(dropOne, nextDelay);
+  }
+  dropOne();
+}
+
+/* ====================================================
+   BACKGROUND MUSIC — Suno AI generated jingle
+   File: audio/background.mp3
+==================================================== */
+function initBackgroundMusic() {
+  try {
+    const audio = new Audio('audio/background.mp3');
+    audio.volume = 0;
+    audio.loop   = false;
+    audio.play().catch(() => {});
+    // Fade in over 1.5 s
+    let vol = 0;
+    const step = 0.38 / (1500 / 50);
+    const fade = setInterval(() => {
+      vol = Math.min(vol + step, 0.38);
+      audio.volume = vol;
+      if (vol >= 0.38) clearInterval(fade);
+    }, 50);
+  } catch(e) {}
+}
+
+/* ====================================================
+   PARTICLES
+==================================================== */
+function initParticles() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx    = canvas.getContext('2d');
+  canvas.width  = 1280;
+  canvas.height = 720;
+
+  const pts = Array.from({length:65}, ()=>({
+    x:  Math.random() * 1280,
+    y:  Math.random() * 720,
+    r:  Math.random() * 1.5 + .3,
+    vy: -(Math.random() * .4 + .1),
+    vx: (Math.random() - .5) * .14,
+    op: Math.random() * .45 + .1,
+    c:  Math.random() > .5 ? '#c77dff' : '#ff6ec7',
+  }));
+
+  (function draw() {
+    ctx.clearRect(0, 0, 1280, 720);
+    for (const p of pts) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.c;
+      ctx.globalAlpha = p.op;
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -4)    { p.y = 724; p.x = Math.random()*1280; }
+      if (p.x <  -4)     p.x = 1284;
+      if (p.x >  1284)   p.x = -4;
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  })();
+}
+</script>
+</body>
+</html>

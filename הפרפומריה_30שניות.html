@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הפרפומריה — פרסומת 30 שניות (פורטרט)</title>
+  <!--
+    גרסה קצרה — 1080×1920 (9:16) לאינסטגרם / טיקטוק / פייסבוק ממומן
+    תמונות: images/women/01-18.jpg | images/men/01-18.jpg
+    לוגו:   הפרפומריה-_לוגו.jpg
+    אודיו:  audio/voiceover_30s.mp3
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --plum:       #1a082e;
+      --plum-mid:   #2d1045;
+      --plum-light: #3e1a60;
+      --neon-pink:  #ff6ec7;
+      --neon-purple:#c77dff;
+      --neon-violet:#9c27b0;
+      --white:      #f5eeff;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      background: var(--plum);
+      font-family: 'Heebo', Arial, sans-serif;
+      direction: rtl;
+      color: var(--white);
+      user-select: none;
+    }
+
+    /* ── Background ── */
+    #bg-canvas {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      z-index:1; pointer-events:none;
+    }
+    .bg-radial {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:
+        radial-gradient(ellipse 80% 40% at 50% 30%, rgba(156,39,176,.2) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255,110,199,.08) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(199,125,255,.08) 0%, transparent 50%);
+      z-index:2; pointer-events:none;
+    }
+
+    /* ── Phases ── */
+    .phase {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      z-index:10;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition: opacity .65s ease;
+    }
+    .phase.visible { opacity:1; pointer-events:all; }
+
+    /* ══════════════════════════════
+       PHASE 1 — LOGO
+    ══════════════════════════════ */
+    #phase-logo { gap:0; }
+
+    .logo-wrapper {
+      display:flex; flex-direction:column;
+      align-items:center; gap:22px;
+      opacity:0; transform:scale(.5);
+      transition: opacity 1.2s cubic-bezier(.34,1.4,.64,1),
+                  transform 1.4s cubic-bezier(.34,1.4,.64,1);
+    }
+    .logo-wrapper.pop { opacity:1; transform:scale(1); }
+
+    .logo-img-box {
+      width:500px; height:280px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    #logo-img {
+      max-width:500px; max-height:280px; width:auto; height:auto;
+      filter: drop-shadow(0 0 22px var(--neon-purple))
+              drop-shadow(0 0 50px var(--neon-pink))
+              drop-shadow(0 0 100px rgba(156,39,176,.5));
+    }
+    .logo-text-fallback {
+      display:none; font-size:4rem; font-weight:900;
+      text-shadow: 0 0 14px var(--neon-pink), 0 0 30px var(--neon-purple), 0 0 70px var(--neon-violet);
+      padding:22px 50px;
+      border:2px solid var(--neon-purple); border-radius:14px;
+      background:rgba(62,26,96,.7);
+      box-shadow: 0 0 35px rgba(199,125,255,.3), inset 0 0 50px rgba(199,125,255,.1);
+    }
+
+    .logo-tagline {
+      font-size:2rem; font-weight:300;
+      color:var(--neon-purple); letter-spacing:14px;
+      text-shadow: 0 0 12px var(--neon-purple);
+      opacity:0; transform:translateY(14px);
+      transition: opacity .8s ease .5s, transform .8s ease .5s;
+    }
+    .logo-wrapper.pop .logo-tagline { opacity:1; transform:translateY(0); }
+    .logo-address {
+      font-size:1.3rem; color:rgba(255,255,255,.5); letter-spacing:5px;
+      opacity:0; transition: opacity .8s ease .9s;
+    }
+    .logo-wrapper.pop .logo-address { opacity:1; }
+
+    /* ══════════════════════════════
+       PHASE 2 — GALLERY
+    ══════════════════════════════ */
+    #phase-gallery {
+      justify-content:flex-start;
+      padding-top:40px; gap:16px;
+    }
+
+    .gallery-heading {
+      font-size:2rem; font-weight:700;
+      color:var(--neon-purple); letter-spacing:5px;
+      text-shadow: 0 0 10px var(--neon-purple);
+    }
+
+    .marquee-row {
+      width:1080px; height:340px;
+      overflow:hidden; position:relative; flex-shrink:0;
+    }
+    .marquee-row::before, .marquee-row::after {
+      content:''; position:absolute; top:0; height:100%;
+      width:80px; z-index:5; pointer-events:none;
+    }
+    .marquee-row::before { right:0; background:linear-gradient(to left,var(--plum),transparent); }
+    .marquee-row::after  { left:0;  background:linear-gradient(to right,var(--plum),transparent); }
+
+    .row-badge {
+      position:absolute; right:14px; top:10px;
+      font-size:1rem; font-weight:700;
+      padding:5px 18px; border-radius:22px; z-index:6;
+    }
+    .row-badge.women { background:rgba(255,110,199,.15); color:var(--neon-pink); border:1px solid rgba(255,110,199,.5); }
+    .row-badge.men   { background:rgba(130,170,255,.15); color:#8ab4ff;          border:1px solid rgba(130,170,255,.5); }
+
+    .marquee-track {
+      display:flex; direction:ltr;
+      gap:16px;
+      position:absolute; left:0; top:14px;
+      height:calc(100% - 14px);
+      will-change:transform;
+    }
+
+    /* ── Card ── */
+    .perfume-card {
+      flex:0 0 220px; height:300px;
+      background:linear-gradient(155deg,rgba(62,26,96,.95) 0%,rgba(26,8,46,.98) 100%);
+      border-radius:16px;
+      display:flex; flex-direction:column;
+      align-items:center; padding:12px 10px 10px;
+      position:relative; overflow:hidden;
+    }
+    .perfume-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(199,125,255,.7),transparent);
+    }
+    .perfume-card.w-card { border:1px solid rgba(255,110,199,.35); box-shadow:0 0 16px rgba(255,110,199,.12); }
+    .perfume-card.m-card { border:1px solid rgba(130,170,255,.35); box-shadow:0 0 16px rgba(130,170,255,.12); }
+
+    .card-img {
+      width:186px; height:210px;
+      border-radius:10px; overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(45,16,69,.8); flex-shrink:0;
+    }
+    .card-img img { width:100%; height:100%; object-fit:contain; }
+    .card-img .placeholder {
+      display:none; width:100%; height:100%;
+      background:linear-gradient(135deg,rgba(80,20,120,.5),rgba(26,8,46,.85));
+      align-items:center; justify-content:center; font-size:5rem;
+    }
+    .card-name {
+      font-size:.9rem; font-weight:700; text-align:center;
+      color:var(--white); line-height:1.3; max-width:200px;
+      margin-top:8px; flex:1;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .card-brand { font-size:.78rem; color:var(--neon-purple); text-align:center; opacity:.85; }
+
+    /* ══════════════════════════════
+       PHASE 3 — AIRPLANE
+    ══════════════════════════════ */
+    #phase-airplane { overflow:hidden; }
+
+    .clouds { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+    .cloud  { position:absolute; border-radius:50%; background:rgba(199,125,255,.05); filter:blur(50px); }
+
+    #airplane-el { position:absolute; top:35%; }
+
+    .plane-glow {
+      position:absolute; top:42px; left:502px;
+      width:65px; height:16px;
+      background:linear-gradient(90deg,rgba(255,160,0,1) 0%,rgba(255,90,0,.55) 50%,transparent 100%);
+      border-radius:50%; filter:blur(6px);
+      animation:flameFl .09s linear infinite alternate;
+    }
+    @keyframes flameFl {
+      from { opacity:.75; transform:scaleY(.8) scaleX(1); }
+      to   { opacity:1;   transform:scaleY(1.5) scaleX(1.2); }
+    }
+
+    #bottles-container { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:15; }
+
+    .bottle-drop {
+      position:absolute;
+      display:flex; flex-direction:column; align-items:center;
+      animation:bottleFall linear forwards; pointer-events:none;
+    }
+    .bottle-card {
+      width:65px; height:85px;
+      border-radius:10px; overflow:hidden;
+      border:1px solid rgba(199,125,255,.7);
+      box-shadow:0 0 14px rgba(199,125,255,.5),0 4px 10px rgba(0,0,0,.6);
+      background:rgba(26,8,46,.9);
+      margin-top:2px;
+    }
+    .bottle-card img { width:100%; height:100%; object-fit:contain; }
+    @keyframes bottleFall {
+      0%   { transform:translateY(0)      translateX(0)    rotate(-3deg); opacity:1; }
+      20%  { transform:translateY(200px)  translateX(18px) rotate(3deg);  opacity:1; }
+      40%  { transform:translateY(430px)  translateX(-12px) rotate(-4deg); opacity:1; }
+      60%  { transform:translateY(660px)  translateX(20px) rotate(2deg);  opacity:1; }
+      80%  { transform:translateY(880px)  translateX(-8px) rotate(-3deg); opacity:.8; }
+      100% { transform:translateY(1100px) translateX(10px) rotate(2deg);  opacity:0; }
+    }
+
+    .plane-slogan {
+      position:absolute; bottom:20%; left:0; right:0; text-align:center;
+      font-size:3.4rem; font-weight:900;
+      text-shadow:0 0 14px var(--neon-pink),0 0 28px var(--neon-purple),0 0 60px var(--neon-violet);
+      opacity:0; transition:opacity 1.2s ease; z-index:20;
+    }
+    .plane-slogan.show { opacity:1; }
+
+    /* ══════════════════════════════
+       PHASE 4 — CONTACT
+    ══════════════════════════════ */
+    #phase-contact {
+      gap:24px;
+      background:radial-gradient(ellipse 70% 50% at 50% 45%, rgba(156,39,176,.2) 0%, transparent 70%);
+    }
+
+    .contact-logo-box { width:360px; height:220px; display:flex; align-items:center; justify-content:center; }
+    #contact-logo-img {
+      max-width:360px; max-height:220px; width:auto; height:auto;
+      filter:drop-shadow(0 0 16px var(--neon-purple)) drop-shadow(0 0 34px var(--neon-pink));
+    }
+    .contact-logo-fallback { display:none; font-size:3rem; font-weight:900; text-shadow:0 0 16px var(--neon-pink),0 0 32px var(--neon-purple); }
+
+    .final-slogan {
+      font-size:3.4rem; font-weight:900; text-align:center; line-height:1.3;
+      text-shadow:0 0 12px var(--neon-pink),0 0 25px var(--neon-pink),0 0 50px var(--neon-purple);
+      opacity:0; transform:translateY(24px);
+      transition:opacity .9s ease .3s, transform .9s ease .3s;
+    }
+    #phase-contact.visible .final-slogan { opacity:1; transform:translateY(0); }
+
+    .neon-divider {
+      width:500px; height:2px;
+      background:linear-gradient(90deg,transparent,var(--neon-purple),var(--neon-pink),var(--neon-purple),transparent);
+      box-shadow:0 0 10px var(--neon-purple),0 0 22px rgba(199,125,255,.3);
+    }
+
+    .contact-block {
+      text-align:center; display:flex; flex-direction:column; gap:8px;
+      opacity:0; transform:translateY(18px);
+      transition:opacity .9s ease .7s, transform .9s ease .7s;
+    }
+    #phase-contact.visible .contact-block { opacity:1; transform:translateY(0); }
+
+    .c-phone { font-size:3.8rem; font-weight:900; direction:ltr; color:var(--neon-purple); text-shadow:0 0 16px var(--neon-purple),0 0 34px rgba(199,125,255,.5); letter-spacing:6px; }
+    .c-address { font-size:1.8rem; color:rgba(255,255,255,.9); }
+    .c-city { font-size:1.35rem; color:var(--neon-pink); opacity:.8; letter-spacing:4px; }
+
+    .bottom-tagline { font-size:1.4rem; color:var(--neon-purple); letter-spacing:4px; opacity:0; transition:opacity .9s ease 1.2s; }
+    #phase-contact.visible .bottom-tagline { opacity:.85; }
+
+    /* ── Slogan Overlay ── */
+    #slogan-overlay { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:50; pointer-events:none; text-align:center; width:92%; max-width:940px; }
+    #slogan-text {
+      display:inline-block; font-size:2.4rem; font-weight:700; color:var(--white);
+      text-shadow:0 0 10px var(--neon-pink),0 0 22px var(--neon-pink),0 0 44px var(--neon-purple);
+      padding:14px 44px;
+      background:rgba(26,8,46,.78); backdrop-filter:blur(8px);
+      border-radius:60px; border:1px solid rgba(199,125,255,.3);
+      box-shadow:0 0 22px rgba(199,125,255,.2);
+      opacity:0; transform:translateY(16px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    #slogan-text.show { opacity:1; transform:translateY(0); }
+
+    /* ── Progress Bar ── */
+    #progress-bar {
+      position:absolute; bottom:0; left:0; width:0%; height:4px;
+      background:linear-gradient(90deg,var(--neon-violet),var(--neon-purple),var(--neon-pink));
+      box-shadow:0 0 10px var(--neon-pink); z-index:100;
+    }
+
+    /* ── Play Overlay ── */
+    #play-overlay {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:linear-gradient(135deg,rgba(16,4,28,.97) 0%,rgba(45,16,69,.96) 100%);
+      z-index:200; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:30px; cursor:pointer;
+    }
+    .ov-logo-box { width:400px; height:240px; display:flex; align-items:center; justify-content:center; }
+    #ov-logo-img { max-width:400px; max-height:240px; filter:drop-shadow(0 0 20px var(--neon-purple)) drop-shadow(0 0 40px var(--neon-pink)); }
+    .ov-logo-fallback { display:none; font-size:3.5rem; font-weight:900; text-shadow:0 0 16px var(--neon-pink),0 0 32px var(--neon-purple); }
+    .ov-subtitle { font-size:2rem; font-weight:300; color:rgba(255,255,255,.75); letter-spacing:8px; }
+    .play-btn {
+      width:110px; height:110px; border-radius:50%;
+      border:2.5px solid var(--neon-purple); background:rgba(199,125,255,.15);
+      display:flex; align-items:center; justify-content:center;
+      font-size:3rem; padding-left:8px;
+      box-shadow:0 0 28px rgba(199,125,255,.45),0 0 56px rgba(255,110,199,.2),inset 0 0 24px rgba(199,125,255,.1);
+      animation:pulsePly 2s ease-in-out infinite;
+    }
+    @keyframes pulsePly {
+      0%,100% { box-shadow:0 0 28px rgba(199,125,255,.45),0 0 56px rgba(255,110,199,.2); transform:scale(1); }
+      50%      { box-shadow:0 0 45px rgba(199,125,255,.65),0 0 90px rgba(255,110,199,.35); transform:scale(1.06); }
+    }
+    .ov-hint { font-size:1.1rem; color:rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-radial"></div>
+
+<!-- Play Overlay -->
+<div id="play-overlay" onclick="startAnimation()">
+  <div class="ov-logo-box">
+    <img id="ov-logo-img" src="הפרפומריה-_לוגו.jpg" alt="הפרפומריה"
+         onerror="this.style.display='none';document.getElementById('ov-logo-fallback').style.display='block'">
+    <span class="ov-logo-fallback" id="ov-logo-fallback">הפרפומריה</span>
+  </div>
+  <div class="ov-subtitle">כפר סבא</div>
+  <div class="play-btn">▶</div>
+  <div class="ov-hint">לחץ להפעלה — 30 שניות</div>
+</div>
+
+<!-- Phase 1: Logo -->
+<div id="phase-logo" class="phase">
+  <div class="logo-wrapper" id="logo-wrapper">
+    <div class="logo-img-box">
+      <img id="logo-img" src="הפרפומריה-_לוגו.jpg" alt="הפרפומריה"
+           onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='block'">
+      <span class="logo-text-fallback" id="logo-fallback">הפרפומריה</span>
+    </div>
+    <div class="logo-tagline">כפר סבא</div>
+    <div class="logo-address">רחוב ויצמן 74</div>
+  </div>
+</div>
+
+<!-- Phase 2: Gallery -->
+<div id="phase-gallery" class="phase">
+  <div class="gallery-heading">המגוון שלנו</div>
+
+  <div class="marquee-row" id="row-women">
+    <span class="row-badge women">לנשים 💜</span>
+    <div class="marquee-track" id="track-women"></div>
+  </div>
+
+  <div class="marquee-row" id="row-men">
+    <span class="row-badge men">לגברים 💙</span>
+    <div class="marquee-track" id="track-men"></div>
+  </div>
+</div>
+
+<!-- Phase 3: Airplane -->
+<div id="phase-airplane" class="phase">
+  <div class="clouds">
+    <div class="cloud" style="width:600px;height:300px;top:8%;left:5%"></div>
+    <div class="cloud" style="width:400px;height:220px;top:60%;right:5%"></div>
+    <div class="cloud" style="width:350px;height:180px;top:40%;left:50%"></div>
+  </div>
+
+  <div id="airplane-el">
+    <div style="position:relative">
+      <svg viewBox="0 0 580 175" xmlns="http://www.w3.org/2000/svg" width="560">
+        <defs>
+          <filter id="ng" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <linearGradient id="fg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#5c2a90"/>
+            <stop offset="30%"  stop-color="#4a1a78"/>
+            <stop offset="100%" stop-color="#28094c"/>
+          </linearGradient>
+          <linearGradient id="wg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#4a1a78"/>
+            <stop offset="100%" stop-color="#1c0638"/>
+          </linearGradient>
+          <linearGradient id="eg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stop-color="#5a2a8a"/>
+            <stop offset="100%" stop-color="#240a40"/>
+          </linearGradient>
+          <linearGradient id="ns" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="rgba(100,55,160,.55)"/>
+            <stop offset="40%"  stop-color="rgba(120,65,190,.25)"/>
+            <stop offset="100%" stop-color="rgba(80,35,130,.05)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ══ WING ══ -->
+        <path d="M 234 111 L 280 168 L 408 168 L 358 111 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1.2"/>
+        <path d="M 406 168 L 428 140 L 410 165 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1"/>
+        <path d="M 234 111 L 280 168" fill="none" stroke="rgba(199,125,255,.3)" stroke-width="1.4"/>
+        <path d="M 230 112 Q 258 118 286 118 Q 322 118 362 112"
+              fill="none" stroke="rgba(199,125,255,.16)" stroke-width="4"/>
+
+        <!-- ══ ENGINE PYLON ══ -->
+        <path d="M 438 92 L 445 68 L 458 68 L 453 91 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="0.8"/>
+
+        <!-- ══ ENGINE NACELLE ══ -->
+        <path d="M 390 56
+                 Q 405 44, 455 43
+                 Q 496 43, 520 55
+                 Q 526 59, 525 63
+                 Q 524 67, 520 69
+                 Q 496 75, 455 76
+                 Q 405 75, 390 70
+                 Q 383 66, 383 63
+                 Q 383 58, 390 56 Z"
+              fill="url(#eg)" stroke="#c77dff" stroke-width="1"/>
+        <path d="M 400 45 Q 455 42 518 56"
+              fill="none" stroke="rgba(199,125,255,.22)" stroke-width="1.5"/>
+        <ellipse cx="393" cy="63" rx="17" ry="17"
+                 fill="#07021a" stroke="#c77dff" stroke-width="1.4"/>
+        <ellipse cx="393" cy="63" rx="10" ry="10"
+                 fill="#120428" stroke="rgba(199,125,255,.38)" stroke-width="0.8"/>
+        <line x1="393" y1="53" x2="393" y2="73" stroke="rgba(199,125,255,.18)" stroke-width="0.8"/>
+        <line x1="383" y1="63" x2="403" y2="63" stroke="rgba(199,125,255,.18)" stroke-width="0.8"/>
+        <path d="M 520 55 Q 528 59, 530 63 Q 528 67, 520 69 L 527 63 Z"
+              fill="#07021a" stroke="#c77dff" stroke-width="0.8"/>
+
+        <!-- ══ FUSELAGE ══ -->
+        <path d="M 18 94
+                 C 42 80, 74 73, 104 72
+                 L 456 72
+                 Q 504 72 525 86
+                 Q 530 90 528 94
+                 Q 530 98 525 102
+                 Q 504 110 456 110
+                 L 104 110
+                 C 74 110, 42 108, 18 94 Z"
+              fill="url(#fg)" stroke="#c77dff" stroke-width="1.5"/>
+        <path d="M 34 87 C 68 81, 96 79, 124 79 L 446 79 Q 474 79 498 85"
+              fill="none" stroke="rgba(199,125,255,.24)" stroke-width="3.5"/>
+        <path d="M 34 101 C 68 106, 96 108, 124 108 L 446 108 Q 476 108 500 102"
+              fill="none" stroke="rgba(0,0,20,.22)" stroke-width="5"/>
+        <path d="M 18 94 C 42 80, 74 73, 104 72
+                 C 92 81, 66 90, 52 94
+                 C 66 98, 92 106, 104 110
+                 C 74 110, 42 108, 18 94 Z"
+              fill="url(#ns)" opacity=".55"/>
+
+        <!-- ══ COCKPIT ══ -->
+        <path d="M 18 94 C 30 88, 42 84, 54 82
+                 C 42 90, 30 98, 18 94 Z"
+              fill="rgba(18,6,38,.65)" stroke="#c77dff" stroke-width="0.5"/>
+        <path d="M 50 91 L 78 80 L 92 84 L 66 96 Z"
+              fill="#162e4a" stroke="#4d88bb" stroke-width="0.9" opacity=".94"/>
+        <path d="M 78 80 L 108 76 L 118 80 L 92 84 Z"
+              fill="#1a4060" stroke="#3d6e99" stroke-width="0.8" opacity=".86"/>
+        <line x1="92" y1="84" x2="78" y2="80" stroke="#336688" stroke-width="1"/>
+
+        <!-- ══ VERTICAL FIN (T-tail) ══ -->
+        <path d="M 480 72 L 508 13 L 545 72 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1"/>
+        <path d="M 508 13 L 545 72" fill="none" stroke="rgba(199,125,255,.28)" stroke-width="1.2"/>
+
+        <!-- ══ T-TAIL HORIZONTAL STABILIZER ══ -->
+        <path d="M 470 18 L 508 11 L 576 22 L 572 34 L 508 25 L 473 31 Z"
+              fill="url(#wg)" stroke="#c77dff" stroke-width="1"/>
+        <path d="M 470 18 L 508 11 L 576 22"
+              fill="none" stroke="rgba(199,125,255,.28)" stroke-width="1.2"/>
+
+        <!-- ══ CABIN WINDOWS ══ -->
+        <rect x="124" y="79" width="13" height="9" rx="2.5" fill="#163a56" stroke="#6899aa" stroke-width="0.7" opacity=".9"/>
+        <rect x="143" y="79" width="13" height="9" rx="2.5" fill="#163a56" stroke="#6899aa" stroke-width="0.7" opacity=".9"/>
+        <rect x="162" y="79" width="13" height="9" rx="2.5" fill="#163a56" stroke="#6899aa" stroke-width="0.7" opacity=".9"/>
+        <rect x="181" y="79" width="13" height="9" rx="2.5" fill="#6c22bb" stroke="#9955cc" stroke-width="0.7" opacity=".6"/>
+        <rect x="200" y="79" width="13" height="9" rx="2.5" fill="#6c22bb" stroke="#9955cc" stroke-width="0.7" opacity=".6"/>
+        <rect x="219" y="79" width="13" height="9" rx="2.5" fill="#6c22bb" stroke="#9955cc" stroke-width="0.7" opacity=".6"/>
+
+        <!-- ══ LOGO ══ -->
+        <text x="348" y="95" text-anchor="middle"
+              font-size="18" font-weight="900" fill="white"
+              font-family="Heebo, Arial" filter="url(#ng)">הפרפומריה</text>
+      </svg>
+      <div class="plane-glow"></div>
+    </div>
+  </div>
+
+  <div id="bottles-container"></div>
+  <div class="plane-slogan" id="plane-slogan">מכל העולם — אצלנו</div>
+</div>
+
+<!-- Phase 4: Contact -->
+<div id="phase-contact" class="phase">
+  <div class="contact-logo-box">
+    <img id="contact-logo-img" src="הפרפומריה-_לוגו.jpg" alt="הפרפומריה"
+         onerror="this.style.display='none';document.getElementById('contact-logo-fallback').style.display='block'">
+    <span class="contact-logo-fallback" id="contact-logo-fallback">הפרפומריה</span>
+  </div>
+
+  <div class="final-slogan">
+    הבושם שחיפשת<br>כאן, בשבילך
+  </div>
+
+  <div class="neon-divider"></div>
+
+  <div class="contact-block">
+    <div class="c-phone">09-9544888</div>
+    <div class="c-address">רחוב ויצמן 74</div>
+    <div class="c-city">כפר סבא</div>
+  </div>
+
+  <div class="neon-divider"></div>
+  <div class="bottom-tagline">תרגיש &nbsp;·&nbsp; תריח &nbsp;·&nbsp; תתאהב</div>
+</div>
+
+<!-- Slogan Overlay -->
+<div id="slogan-overlay">
+  <div id="slogan-text"></div>
+</div>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<script>
+const PERFUMES = {
+  women: [
+    { name:"Classy Chic Girl",           brand:"" },
+    { name:"Bombshell",                  brand:"Victoria's Secret" },
+    { name:"La Vie est Belle Florale",   brand:"Lancôme" },
+    { name:"Trésor",                     brand:"Lancôme" },
+    { name:"Idôle",                      brand:"Lancôme" },
+    { name:"Poême",                      brand:"Lancôme" },
+    { name:"Amabile",                    brand:"Xerjoff" },
+    { name:"Xerjoff כחול",               brand:"Xerjoff" },
+    { name:"Shalina Exclusive",          brand:"" },
+    { name:"My Way",                     brand:"Giorgio Armani" },
+    { name:"Cristalle Eau Verte",        brand:"Chanel" },
+    { name:"Miss Dior",                  brand:"Dior" },
+    { name:"Roses de Mai",               brand:"Jacques Yves" },
+    { name:"Born In Roma Intense",       brand:"Valentino" },
+    { name:"Omnia Crystalline",          brand:"Bvlgari" },
+    { name:"Omnia אדום",                 brand:"Bvlgari" },
+    { name:"Omnia סגול",                 brand:"Bvlgari" },
+    { name:"Ideal Women",                brand:"Casamorando" },
+  ],
+  men: [
+    { name:"Amber Oud סגול",             brand:"Al Haramain" },
+    { name:"Amber Oud Gold Mine",        brand:"Al Haramain" },
+    { name:"Déclaration",                brand:"Cartier" },
+    { name:"Liquid Brun",                brand:"French Avenue" },
+    { name:"Invictus",                   brand:"Paco Rabanne" },
+    { name:"John Gustav Homme",          brand:"Scandant" },
+    { name:"Acqua di Giò EDT",           brand:"Armani" },
+    { name:"Acqua di Giò Profondo",      brand:"Armani" },
+    { name:"Acqua di Giò Profumo",       brand:"Armani" },
+    { name:"Acqua di Giò Absolu",        brand:"Armani" },
+    { name:"Code Le Parfum",             brand:"Armani" },
+    { name:"Stronger With You",          brand:"Emporio Armani" },
+    { name:"Luna Rossa Ocean",           brand:"Prada" },
+    { name:"Roma Uomo",                  brand:"Laura Biagiotti" },
+    { name:"The Most Wanted",            brand:"Azzaro" },
+    { name:"Koin",                       brand:"Xerjoff" },
+    { name:"Don",                        brand:"Xerjoff" },
+    { name:"Alexandria II Anniversary",  brand:"Xerjoff" },
+  ]
+};
+
+const SLOGANS = [
+  "הריח שלך, הסיפור שלך",
+  "מכל העולם — אצלנו",
+  "המותגים הגדולים — במחיר מפתיע",
+  "תרגיש. תריח. תתאהב.",
+  "הניחוח שמדבר אליך",
+];
+
+// ── Timeline (30s) ──
+const DURATION = 30000;
+const TIMELINE = [
+  { at:    0, fn: ()=>{ showPhase('phase-logo'); setTimeout(()=>document.getElementById('logo-wrapper').classList.add('pop'),80); } },
+  { at: 3000, fn: ()=>{ transitionPhase('phase-logo','phase-gallery'); buildGallery(); setTimeout(startMarquee,500); } },
+  { at: 5000, fn: ()=> showSlogan(0) },
+  { at: 9500, fn: ()=> showSlogan(2) },
+  { at:14000, fn: ()=> showSlogan(3) },
+  { at:16000, fn: ()=>{ transitionPhase('phase-gallery','phase-airplane'); setTimeout(startAirplane,400); } },
+  { at:19500, fn: ()=> startDroppingBottles() },
+  { at:22500, fn: ()=> document.getElementById('plane-slogan').classList.add('show') },
+  { at:26000, fn: ()=> transitionPhase('phase-airplane','phase-contact') },
+  { at:28500, fn: ()=> showSlogan(4) },
+];
+
+let startTime=null, rafId=null;
+const fired=new Set();
+let galleryBuilt=false, marqueeActive=false;
+
+function startAnimation() {
+  document.getElementById('play-overlay').style.display='none';
+  initParticles();
+  initBackgroundMusic();
+  fired.clear(); galleryBuilt=false; marqueeActive=false;
+  rafId = requestAnimationFrame(function tick(ts){
+    if(!startTime) startTime=ts;
+    const el = ts-startTime;
+    document.getElementById('progress-bar').style.width = Math.min(el/DURATION*100,100)+'%';
+    for(const ev of TIMELINE) { if(!fired.has(ev.at)&&el>=ev.at){ fired.add(ev.at); ev.fn(); } }
+    if(el < DURATION+800) rafId = requestAnimationFrame(tick);
+  });
+}
+
+function showPhase(id){ document.getElementById(id).classList.add('visible'); }
+function hidePhase(id){ document.getElementById(id).classList.remove('visible'); }
+function transitionPhase(from,to){ hidePhase(from); setTimeout(()=>showPhase(to),420); }
+
+let sloganTimer=null;
+function showSlogan(idx){
+  const el=document.getElementById('slogan-text');
+  el.classList.remove('show'); clearTimeout(sloganTimer);
+  setTimeout(()=>{
+    el.textContent=SLOGANS[idx]; el.classList.add('show');
+    sloganTimer=setTimeout(()=>el.classList.remove('show'),3600);
+  },320);
+}
+
+function buildGallery(){
+  if(galleryBuilt) return; galleryBuilt=true;
+  buildTrack('track-women',PERFUMES.women,'w-card','🌸','women');
+  buildTrack('track-men',  PERFUMES.men,  'm-card','💙','men');
+}
+function buildTrack(trackId,items,cardClass,emoji,dir){
+  const track=document.getElementById(trackId); track.innerHTML='';
+  [...items,...items].forEach((p,i)=>{
+    const idx=(i%items.length)+1;
+    const file=`images/${dir}/${String(idx).padStart(2,'0')}.jpg`;
+    const card=document.createElement('div');
+    card.className=`perfume-card ${cardClass}`;
+    card.innerHTML=`
+      <div class="card-img">
+        <img src="${file}" alt="${p.name}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder">${emoji}</div>
+      </div>
+      <div class="card-name">${p.name}</div>
+      ${p.brand?`<div class="card-brand">${p.brand}</div>`:''}
+    `;
+    track.appendChild(card);
+  });
+}
+
+function startMarquee(){
+  if(marqueeActive) return; marqueeActive=true;
+  animateRow('track-women',15);
+  animateRow('track-men',  18);
+}
+function animateRow(trackId,durSec){
+  const track=document.getElementById(trackId);
+  const halfW=track.scrollWidth/2;
+  let offset=0,last=null;
+  const pps=halfW/durSec;
+  (function frame(ts){ if(!last)last=ts; const dt=(ts-last)/1000; last=ts;
+    offset+=pps*dt; if(offset>=halfW)offset=0;
+    track.style.transform=`translateX(-${offset}px)`;
+    requestAnimationFrame(frame);
+  })(performance.now());
+}
+
+function startAirplane(){
+  const el=document.getElementById('airplane-el');
+  el.style.cssText='position:absolute;top:28%;left:1140px;';
+  let start=null;
+  const dist=1140+640, dur=18000;
+  function frame(ts){ if(!start)start=ts;
+    const p=(ts-start)/dur;
+    if(p<=1){ el.style.left=(1140-p*dist)+'px'; requestAnimationFrame(frame); }
+  }
+  requestAnimationFrame(frame);
+}
+
+function startDroppingBottles(){
+  const container=document.getElementById('bottles-container');
+  const planeEl=document.getElementById('airplane-el');
+  const imgs=[];
+  for(let i=1;i<=18;i++){
+    imgs.push(`images/women/${String(i).padStart(2,'0')}.jpg`);
+    imgs.push(`images/men/${String(i).padStart(2,'0')}.jpg`);
+  }
+  // top=28%*1920=538, belly ~538+106=644px
+  const planeTopPct = 0.28;
+  const SCREEN_W = 1080, PLANE_W = 560;
+  let count = 0;
+
+  function dropOne(){
+    if(count >= 16) return;
+    count++;
+    // read plane position fresh each drop
+    const planeLeft = parseFloat(planeEl.style.left) || 300;
+    const planeBaseY = planeTopPct * 1920 + 108;
+    // clamp x to on-screen section of plane belly
+    const leftEdge  = Math.max(40, planeLeft + 60);   // skip nose tip
+    const rightEdge = Math.min(SCREEN_W - 40, planeLeft + PLANE_W - 80);
+    const x = leftEdge + Math.random() * Math.max(80, rightEdge - leftEdge);
+    const y = planeBaseY + (Math.random() * 60 - 20);
+    const src=imgs[Math.floor(Math.random()*imgs.length)];
+    const dur=(5.0+Math.random()*3.5).toFixed(2);
+    const b=document.createElement('div'); b.className='bottle-drop';
+    b.style.position='absolute';
+    b.style.left=x+'px';
+    b.style.top=y+'px';
+    b.style.animationDuration=dur+'s';
+    b.innerHTML=`
+      <svg viewBox="0 0 100 80" width="90" height="72" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 8 57 Q 6 8 50 5 Q 94 8 92 57
+                 Q 85 49, 78 57 Q 71 49, 64 57 Q 57 49, 50 57
+                 Q 43 49, 36 57 Q 29 49, 22 57 Q 15 49, 8 57 Z"
+              fill="rgba(199,125,255,.22)" stroke="#c77dff" stroke-width="1.5"/>
+        <line x1="22" y1="57" x2="19" y2="13" stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="36" y1="57" x2="34" y2="7"  stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="50" y1="57" x2="50" y2="5"  stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="64" y1="57" x2="66" y2="7"  stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <line x1="78" y1="57" x2="81" y2="13" stroke="rgba(199,125,255,.45)" stroke-width="0.75"/>
+        <path d="M 16 34 Q 50 19 84 34" fill="none" stroke="rgba(199,125,255,.28)" stroke-width="1.5"/>
+        <line x1="8"  y1="56" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="15" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="22" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="29" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="36" y1="58" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="43" y1="57" x2="44" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="50" y1="57" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="57" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="64" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="71" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="78" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="85" y1="58" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <line x1="92" y1="56" x2="56" y2="80" stroke="rgba(255,110,199,.72)" stroke-width="0.9"/>
+        <rect x="38" y="78" width="24" height="4" rx="2"
+              fill="rgba(255,110,199,.35)" stroke="#ff6ec7" stroke-width="0.8"/>
+      </svg>
+      <div class="bottle-card"><img src="${src}" alt="" loading="lazy"></div>`;
+    container.appendChild(b);
+    setTimeout(()=>{ if(b.parentNode) b.parentNode.removeChild(b); }, 10000);
+    setTimeout(dropOne, 500+Math.random()*600);
+  }
+  dropOne();
+}
+
+function initBackgroundMusic(){
+  try{
+    const ac=new(window.AudioContext||window.webkitAudioContext)();
+    const master=ac.createGain();
+    master.gain.setValueAtTime(0,ac.currentTime);
+    master.gain.linearRampToValueAtTime(0.38,ac.currentTime+1.5);
+    master.connect(ac.destination);
+
+    const dly=ac.createDelay(0.5); dly.delayTime.value=0.14;
+    const dlyG=ac.createGain(); dlyG.gain.value=0.18;
+    master.connect(dly); dly.connect(dlyG); dlyG.connect(master);
+
+    const BPM=105, B=60/BPM;
+
+    function lead(freq,t,beats,vel=0.09){
+      const o=ac.createOscillator(),o2=ac.createOscillator(),g=ac.createGain();
+      const lp=ac.createBiquadFilter(); lp.type='lowpass'; lp.Q.value=2;
+      lp.frequency.setValueAtTime(200,t);
+      lp.frequency.linearRampToValueAtTime(3500,t+0.04);
+      lp.frequency.linearRampToValueAtTime(1800,t+beats*B);
+      o.type='sawtooth'; o.frequency.value=freq;
+      o2.type='sawtooth'; o2.frequency.value=freq*1.006;
+      const dur=beats*B;
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vel,t+0.018);
+      g.gain.setValueAtTime(vel*0.7,t+dur*0.6); g.gain.linearRampToValueAtTime(0,t+dur+0.04);
+      o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(master);
+      o.start(t); o2.start(t); o.stop(t+dur+0.06); o2.stop(t+dur+0.06);
+    }
+    function bass(freq,t){
+      const o=ac.createOscillator(),g=ac.createGain(),lp=ac.createBiquadFilter();
+      lp.type='lowpass'; lp.frequency.value=380; o.type='triangle'; o.frequency.value=freq;
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.14,t+0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+0.45);
+      o.connect(lp); lp.connect(g); g.connect(master); o.start(t); o.stop(t+0.5);
+    }
+    function pad(freqs,t,dur){
+      freqs.forEach(f=>{
+        const o=ac.createOscillator(),g=ac.createGain();
+        const hp=ac.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=200;
+        const lp=ac.createBiquadFilter(); lp.type='lowpass';  lp.frequency.value=1400;
+        o.type='sawtooth'; o.frequency.value=f;
+        g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.018,t+0.12);
+        g.gain.setValueAtTime(0.018,t+dur-0.1); g.gain.linearRampToValueAtTime(0,t+dur);
+        o.connect(hp); hp.connect(lp); lp.connect(g); g.connect(master);
+        o.start(t); o.stop(t+dur+0.05);
+      });
+    }
+    function kick(t){
+      const o=ac.createOscillator(),g=ac.createGain();
+      o.frequency.setValueAtTime(160,t); o.frequency.exponentialRampToValueAtTime(42,t+0.08);
+      g.gain.setValueAtTime(0.9,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.28);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+0.32);
+    }
+    function snare(t){
+      const buf=ac.createBuffer(1,ac.sampleRate*0.18,ac.sampleRate);
+      const d=buf.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+      const src=ac.createBufferSource(),hp=ac.createBiquadFilter(),g=ac.createGain();
+      hp.type='highpass'; hp.frequency.value=900; src.buffer=buf;
+      g.gain.setValueAtTime(0.22,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.18);
+      src.connect(hp); hp.connect(g); g.connect(master); src.start(t); src.stop(t+0.2);
+    }
+    function hihat(t,vol=0.08){
+      const buf=ac.createBuffer(1,ac.sampleRate*0.06,ac.sampleRate);
+      const d=buf.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+      const src=ac.createBufferSource(),hp=ac.createBiquadFilter(),g=ac.createGain();
+      hp.type='highpass'; hp.frequency.value=8000; src.buffer=buf;
+      g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.06);
+      src.connect(hp); hp.connect(g); g.connect(master); src.start(t); src.stop(t+0.07);
+    }
+
+    const now=ac.currentTime+0.3;
+    const chords=[
+      [261.63,329.63,392.00,523.25],
+      [220.00,261.63,329.63,440.00],
+      [174.61,261.63,349.23,440.00],
+      [196.00,246.94,329.63,392.00],
+    ];
+    const bassRoot=[65.41,55.00,43.65,49.00];
+    const melPhrase=[
+      [523.25,0,1],[587.33,.75,.5],[523.25,1.5,1],[493.88,2.5,.5],
+      [440.00,3,1],[493.88,3.75,.5],[523.25,4.5,1.5],
+      [523.25,6,.75],[587.33,6.75,.5],[659.25,7.5,1.5],
+      [587.33,9,1],[523.25,10,.75],[493.88,10.75,.5],[440.00,11.5,1],
+      [392.00,12.5,1],[440.00,13.5,.75],[493.88,14.25,.5],[523.25,15,1.5],
+    ];
+    // one pass = 16 bars = 64 beats = ~36.6 s  (enough for 30s)
+    for(let ci=0;ci<4;ci++) pad(chords[ci%4],now+ci*8*B,8*B+0.12);
+    for(let bar=0;bar<4;bar++){
+      const t0=now+bar*4*B;
+      bass(bassRoot[bar%4],t0); bass(bassRoot[bar%4]*1.5,t0+2*B); bass(bassRoot[bar%4],t0+2.5*B);
+      for(let beat=0;beat<4;beat++){
+        const tb=t0+beat*B; kick(tb);
+        if(beat===1||beat===3) snare(tb);
+        hihat(tb); hihat(tb+B*0.5,0.055);
+      }
+    }
+    melPhrase.forEach(([f,b,d])=>lead(f,now+b*B,d,0.082));
+  }catch(e){}
+}
+
+function initParticles(){
+  const canvas=document.getElementById('bg-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=1080; canvas.height=1920;
+  const pts=Array.from({length:80},()=>({
+    x:Math.random()*1080, y:Math.random()*1920,
+    r:Math.random()*1.6+.3,
+    vy:-(Math.random()*.4+.1), vx:(Math.random()-.5)*.14,
+    op:Math.random()*.45+.1,
+    c:Math.random()>.5?'#c77dff':'#ff6ec7',
+  }));
+  (function draw(){
+    ctx.clearRect(0,0,1080,1920);
+    for(const p of pts){
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.c; ctx.globalAlpha=p.op; ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.y<-4){ p.y=1924; p.x=Math.random()*1080; }
+      if(p.x<-4) p.x=1084;
+      if(p.x>1084) p.x=-4;
+    }
+    ctx.globalAlpha=1; requestAnimationFrame(draw);
+  })();
+}
+</script>
+</body>
+</html>
