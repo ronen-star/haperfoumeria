@@ -64,8 +64,8 @@
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
     html, body {
-      width: 1280px;
-      height: 720px;
+      width: 1080px;
+      height: 1920px;
       overflow: hidden;
       background: var(--plum);
       font-family: 'Heebo', Arial, sans-serif;
@@ -159,19 +159,35 @@
        PHASE 2 — GALLERY
     ══════════════════════════════════════ */
     #phase-gallery {
-      justify-content: flex-start;
-      padding-top: 28px; gap: 10px;
+      justify-content: space-evenly;
+      padding: 50px 0;
     }
 
-    .gallery-heading {
-      font-size: 1.5rem; font-weight:700;
+    .gallery-header { text-align: center; }
+    .gallery-title {
+      font-size: 3rem; font-weight:900;
       color: var(--neon-purple);
-      text-shadow: 0 0 10px var(--neon-purple);
+      text-shadow: 0 0 14px var(--neon-purple), 0 0 30px rgba(199,125,255,.4);
       letter-spacing: 4px;
+    }
+    .gallery-subtitle {
+      font-size: 1.4rem; font-weight:300;
+      color: rgba(255,255,255,.6); letter-spacing: 6px;
+      margin-top: 10px;
+    }
+
+    .gallery-cta { text-align: center; display: flex; flex-direction: column; gap: 10px; }
+    .gc-phone {
+      font-size: 2.8rem; font-weight: 900; direction: ltr;
+      color: var(--neon-pink); letter-spacing: 5px;
+      text-shadow: 0 0 14px var(--neon-pink), 0 0 30px rgba(255,110,199,.5);
+    }
+    .gc-sub {
+      font-size: 1.3rem; color: rgba(255,255,255,.65); letter-spacing: 3px;
     }
 
     .marquee-row {
-      width: 1280px; height: 285px;
+      width: 1080px; height: 370px;
       overflow: hidden; position: relative; flex-shrink: 0;
     }
     .marquee-row::before, .marquee-row::after {
@@ -203,6 +219,11 @@
       color: #8ab4ff;
       border: 1px solid rgba(130,170,255,.5);
     }
+    .row-badge.mix {
+      background: rgba(255,200,50,.15);
+      color: #ffd700;
+      border: 1px solid rgba(255,200,50,.5);
+    }
 
     .marquee-track {
       display: flex; direction: ltr; /* LTR for consistent marquee */
@@ -214,7 +235,7 @@
 
     /* ── Perfume Card ── */
     .perfume-card {
-      flex: 0 0 190px; height: 250px;
+      flex: 0 0 210px; height: 330px;
       background: linear-gradient(155deg, rgba(62,26,96,.95) 0%, rgba(26,8,46,.98) 100%);
       border-radius: 14px;
       display: flex; flex-direction:column;
@@ -236,7 +257,7 @@
     }
 
     .card-img {
-      width:160px; height:172px;
+      width:180px; height:235px;
       border-radius:8px; overflow:hidden;
       display:flex; align-items:center; justify-content:center;
       background: rgba(45,16,69,.8); flex-shrink:0;
@@ -369,7 +390,7 @@
     #phase-contact.visible .final-slogan { opacity:1; transform:translateY(0); }
 
     .neon-divider {
-      width:380px; height:2px;
+      width:820px; height:2px;
       background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-pink), var(--neon-purple), transparent);
       box-shadow: 0 0 8px var(--neon-purple), 0 0 18px rgba(199,125,255,.3);
     }
@@ -518,16 +539,29 @@
 
 <!-- ── Phase 2: Gallery ── -->
 <div id="phase-gallery" class="phase">
-  <div class="gallery-heading">המגוון שלנו</div>
+  <div class="gallery-header">
+    <div class="gallery-title">המגוון שלנו</div>
+    <div class="gallery-subtitle">מותגי יוקרה מהעולם כולו</div>
+  </div>
 
   <div class="marquee-row" id="row-women">
     <span class="row-badge women">לנשים 💜</span>
     <div class="marquee-track" id="track-women"></div>
   </div>
 
+  <div class="marquee-row" id="row-mix">
+    <span class="row-badge mix">נבחרים 🔥</span>
+    <div class="marquee-track" id="track-mix"></div>
+  </div>
+
   <div class="marquee-row" id="row-men">
     <span class="row-badge men">לגברים 💙</span>
     <div class="marquee-track" id="track-men"></div>
+  </div>
+
+  <div class="gallery-cta">
+    <div class="gc-phone">09-9544888</div>
+    <div class="gc-sub">רחוב ויצמן 74 · כפר סבא</div>
   </div>
 </div>
 
@@ -780,22 +814,22 @@ const SLOGANS = [
 /* ====================================================
    TIMELINE  (ms)
 ==================================================== */
-const DURATION = 77578;
+const DURATION = 60000;
 const TIMELINE = [
   { at:     0, fn: () => { showPhase('phase-logo'); setTimeout(()=> document.getElementById('logo-wrapper').classList.add('pop'), 80); } },
-  { at:  6400, fn: () => { transitionPhase('phase-logo','phase-gallery'); buildGallery(); setTimeout(startMarquee, 550); } },
-  { at: 10000, fn: () => showSlogan(0) },
-  { at: 16900, fn: () => showSlogan(1) },
-  { at: 23700, fn: () => showSlogan(2) },
-  { at: 31000, fn: () => showSlogan(3) },
-  { at: 38800, fn: () => showSlogan(4) },
-  { at: 45200, fn: () => { transitionPhase('phase-gallery','phase-airplane'); setTimeout(startAirplane, 450); } },
-  { at: 54300, fn: () => startDroppingBottles() },
-  { at: 57500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
-  { at: 62100, fn: () => showSlogan(5) },
-  { at: 64800, fn: () => transitionPhase('phase-airplane','phase-contact') },
-  { at: 69800, fn: () => showSlogan(6) },
-  { at: 72500, fn: () => { document.body.style.transition = 'opacity 5s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
+  { at:  5000, fn: () => { transitionPhase('phase-logo','phase-gallery'); buildGallery(); setTimeout(startMarquee, 550); } },
+  { at:  8000, fn: () => showSlogan(0) },
+  { at: 13500, fn: () => showSlogan(1) },
+  { at: 19000, fn: () => showSlogan(2) },
+  { at: 24500, fn: () => showSlogan(3) },
+  { at: 30000, fn: () => showSlogan(4) },
+  { at: 35000, fn: () => { transitionPhase('phase-gallery','phase-airplane'); setTimeout(startAirplane, 450); } },
+  { at: 42000, fn: () => startDroppingBottles() },
+  { at: 44500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
+  { at: 47500, fn: () => showSlogan(5) },
+  { at: 49500, fn: () => transitionPhase('phase-airplane','phase-contact') },
+  { at: 53500, fn: () => showSlogan(6) },
+  { at: 56500, fn: () => { document.body.style.transition = 'opacity 3.5s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
 ];
 
 /* ====================================================
@@ -870,6 +904,33 @@ function buildGallery() {
   galleryBuilt = true;
   buildTrack('track-women', PERFUMES.women, 'w-card', '🌸', 'women');
   buildTrack('track-men',   PERFUMES.men,   'm-card', '💙', 'men');
+  buildMixTrack('track-mix');
+}
+
+function buildMixTrack(trackId) {
+  const track = document.getElementById(trackId);
+  track.innerHTML = '';
+  const mixItems = [];
+  for (let i = 0; i < PERFUMES.women.length; i++) {
+    mixItems.push({ name: PERFUMES.women[i].name, brand: PERFUMES.women[i].brand, file: `images/women/${String(i+1).padStart(2,'0')}.jpg`, cls: 'w-card' });
+    if (i < PERFUMES.men.length)
+      mixItems.push({ name: PERFUMES.men[i].name, brand: PERFUMES.men[i].brand, file: `images/men/${String(i+1).padStart(2,'0')}.jpg`, cls: 'm-card' });
+  }
+  const doubled = [...mixItems, ...mixItems];
+  doubled.forEach(p => {
+    const card = document.createElement('div');
+    card.className = `perfume-card ${p.cls}`;
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.file}" alt="${p.name}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder">✨</div>
+      </div>
+      <div class="card-name">${p.name}</div>
+      ${p.brand ? `<div class="card-brand">${p.brand}</div>` : ''}
+    `;
+    track.appendChild(card);
+  });
 }
 
 function buildTrack(trackId, items, cardClass, fallbackEmoji, dir) {
@@ -902,8 +963,9 @@ function startMarquee() {
   marqueeActive = true;
 
   // Women row slightly faster, men slightly slower for visual variety
-  animateRow('track-women', 40);
-  animateRow('track-men',   45);
+  animateRow('track-women', 42);
+  animateRow('track-mix',   36);
+  animateRow('track-men',   48);
 }
 
 function animateRow(trackId, durationSec) {
@@ -929,9 +991,9 @@ function animateRow(trackId, durationSec) {
 ==================================================== */
 function startAirplane() {
   const el = document.getElementById('airplane-el');
-  el.style.cssText = 'position:absolute; top:22%; left:1380px;';
+  el.style.cssText = 'position:absolute; top:28%; left:1180px;';
   let start = null;
-  const dist = 1380 + 500;
+  const dist = 1180 + 600;
   const dur  = 22000; // ms — slow elegant flight
 
   function frame(ts) {
@@ -956,7 +1018,7 @@ function startDroppingBottles() {
     imgs.push(`images/women/${String(i).padStart(2,'0')}.jpg`);
     imgs.push(`images/men/${String(i).padStart(2,'0')}.jpg`);
   }
-  const planeBaseY = 0.22 * 720 + 98; // nominal belly
+  const planeBaseY = 0.28 * 1920 + 98; // nominal belly
   let count = 0;
 
   function dropOne() {
@@ -1044,12 +1106,12 @@ function initBackgroundMusic() {
 function initParticles() {
   const canvas = document.getElementById('bg-canvas');
   const ctx    = canvas.getContext('2d');
-  canvas.width  = 1280;
-  canvas.height = 720;
+  canvas.width  = 1080;
+  canvas.height = 1920;
 
-  const pts = Array.from({length:65}, ()=>({
-    x:  Math.random() * 1280,
-    y:  Math.random() * 720,
+  const pts = Array.from({length:90}, ()=>({
+    x:  Math.random() * 1080,
+    y:  Math.random() * 1920,
     r:  Math.random() * 1.5 + .3,
     vy: -(Math.random() * .4 + .1),
     vx: (Math.random() - .5) * .14,
@@ -1058,7 +1120,7 @@ function initParticles() {
   }));
 
   (function draw() {
-    ctx.clearRect(0, 0, 1280, 720);
+    ctx.clearRect(0, 0, 1080, 1920);
     for (const p of pts) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
@@ -1066,9 +1128,9 @@ function initParticles() {
       ctx.globalAlpha = p.op;
       ctx.fill();
       p.x += p.vx; p.y += p.vy;
-      if (p.y < -4)    { p.y = 724; p.x = Math.random()*1280; }
-      if (p.x <  -4)     p.x = 1284;
-      if (p.x >  1284)   p.x = -4;
+      if (p.y < -4)    { p.y = 1924; p.x = Math.random()*1080; }
+      if (p.x <  -4)     p.x = 1084;
+      if (p.x >  1084)   p.x = -4;
     }
     ctx.globalAlpha = 1;
     requestAnimationFrame(draw);
