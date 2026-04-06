@@ -575,7 +575,7 @@
 
   <div id="airplane-el">
     <div style="position:relative">
-      <svg viewBox="0 0 580 175" xmlns="http://www.w3.org/2000/svg" width="460">
+      <svg viewBox="0 0 580 175" xmlns="http://www.w3.org/2000/svg" width="900">
         <defs>
           <filter id="ng" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="b"/>
@@ -827,9 +827,9 @@ const TIMELINE = [
   { at: 42000, fn: () => startDroppingBottles() },
   { at: 44500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
   { at: 47500, fn: () => showSlogan(5) },
-  { at: 49500, fn: () => transitionPhase('phase-airplane','phase-contact') },
-  { at: 53500, fn: () => showSlogan(6) },
-  { at: 56500, fn: () => { document.body.style.transition = 'opacity 3.5s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
+  { at: 47500, fn: () => transitionPhase('phase-airplane','phase-contact') },
+  { at: 51500, fn: () => showSlogan(6) },
+  { at: 58500, fn: () => { document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
 ];
 
 /* ====================================================
