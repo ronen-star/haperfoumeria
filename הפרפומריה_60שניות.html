@@ -814,7 +814,7 @@ const SLOGANS = [
 /* ====================================================
    TIMELINE  (ms)
 ==================================================== */
-const DURATION = 60000;
+const DURATION = 65000;
 const TIMELINE = [
   { at:     0, fn: () => { showPhase('phase-logo'); setTimeout(()=> document.getElementById('logo-wrapper').classList.add('pop'), 80); } },
   { at:  5000, fn: () => { transitionPhase('phase-logo','phase-gallery'); buildGallery(); setTimeout(startMarquee, 550); } },
@@ -829,7 +829,7 @@ const TIMELINE = [
   { at: 44000, fn: () => showSlogan(5) },
   { at: 52500, fn: () => { hidePhase('phase-airplane'); showPhase('phase-contact'); } },
   { at: 55500, fn: () => showSlogan(6) },
-  { at: 58500, fn: () => { document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
+  { at: 63000, fn: () => { document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
 ];
 
 /* ====================================================
@@ -994,16 +994,17 @@ function animateRow(trackId, durationSec) {
 ==================================================== */
 function startAirplane() {
   const el = document.getElementById('airplane-el');
-  el.style.cssText = 'position:absolute; top:28%; left:1180px;';
+  el.style.cssText = 'position:absolute; top:28%; left:1080px;';
   let start = null;
-  const dist = 1180 + 600;
-  const dur  = 10000; // ms — flight across screen
+  const startX = 1080;          // starts right at screen edge — visible immediately
+  const dist   = 1080 + 950;    // travel to 950px past left edge
+  const dur    = 8000;          // 8s across screen
 
   function frame(ts) {
     if (!start) start = ts;
     const progress = (ts - start) / dur;
     if (progress <= 1) {
-      el.style.left = (1380 - progress * dist) + 'px';
+      el.style.left = (startX - progress * dist) + 'px';
       requestAnimationFrame(frame);
     }
   }
