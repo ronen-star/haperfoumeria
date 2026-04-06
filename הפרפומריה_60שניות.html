@@ -824,11 +824,11 @@ const TIMELINE = [
   { at: 24500, fn: () => showSlogan(3) },
   { at: 30000, fn: () => showSlogan(4) },
   { at: 35000, fn: () => { transitionPhase('phase-gallery','phase-airplane'); setTimeout(startAirplane, 450); } },
-  { at: 42000, fn: () => startDroppingBottles() },
-  { at: 44500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
-  { at: 46000, fn: () => showSlogan(5) },
-  { at: 47500, fn: () => { hidePhase('phase-airplane'); showPhase('phase-contact'); } },
-  { at: 51500, fn: () => showSlogan(6) },
+  { at: 39000, fn: () => startDroppingBottles() },
+  { at: 41500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
+  { at: 44000, fn: () => showSlogan(5) },
+  { at: 52500, fn: () => { hidePhase('phase-airplane'); showPhase('phase-contact'); } },
+  { at: 55500, fn: () => showSlogan(6) },
   { at: 58500, fn: () => { document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
 ];
 
@@ -997,7 +997,7 @@ function startAirplane() {
   el.style.cssText = 'position:absolute; top:28%; left:1180px;';
   let start = null;
   const dist = 1180 + 600;
-  const dur  = 22000; // ms — slow elegant flight
+  const dur  = 10000; // ms — flight across screen
 
   function frame(ts) {
     if (!start) start = ts;
