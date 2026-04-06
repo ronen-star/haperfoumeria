@@ -1,1 +1,3 @@
 ffmpeg_log.txt
+*.mp4
+frame_*.png
