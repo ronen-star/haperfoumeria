@@ -827,7 +827,7 @@ const TIMELINE = [
   { at: 42000, fn: () => startDroppingBottles() },
   { at: 44500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
   { at: 46000, fn: () => showSlogan(5) },
-  { at: 47500, fn: () => transitionPhase('phase-airplane','phase-contact') },
+  { at: 47500, fn: () => { hidePhase('phase-airplane'); showPhase('phase-contact'); } },
   { at: 51500, fn: () => showSlogan(6) },
   { at: 58500, fn: () => { document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
 ];
@@ -851,8 +851,11 @@ function startAnimation() {
   initBackgroundMusic();
 
   fired.clear();
+  startTime     = null;
   galleryBuilt  = false;
   marqueeActive = false;
+  document.body.style.opacity = '1';
+  document.body.style.transition = '';
 
   rafId = requestAnimationFrame(function tick(ts) {
     if (!startTime) startTime = ts;
