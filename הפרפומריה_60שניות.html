@@ -447,6 +447,25 @@
     #slogan-text.show { opacity:1; transform:translateY(0); }
 
     /* ══════════════════════════════════════
+       BOTTLE SHOWCASE
+    ══════════════════════════════════════ */
+    #bottle-showcase {
+      position: absolute;
+      top: 47%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20; pointer-events: none;
+    }
+    #bottle-showcase img {
+      width: 580px; max-height: 820px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 0 40px rgba(199,125,255,.55))
+              drop-shadow(0 0 80px rgba(255,110,199,.3));
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    /* ══════════════════════════════════════
        PROGRESS BAR
     ══════════════════════════════════════ */
     #progress-bar {
@@ -746,6 +765,11 @@
   <div class="bottom-tagline">תרגיש &nbsp;·&nbsp; תריח &nbsp;·&nbsp; תתאהב</div>
 </div>
 
+<!-- ── Bottle Showcase ── -->
+<div id="bottle-showcase">
+  <img id="bottle-img" src="" alt="בושם">
+</div>
+
 <!-- ── Slogan Overlay ── -->
 <div id="slogan-overlay">
   <div id="slogan-text"></div>
@@ -801,6 +825,35 @@ const PERFUMES = {
   ]
 };
 
+const BOTTLE_IMAGES = [
+  ...Array.from({length:18}, (_,i) => `images/men/${String(i+1).padStart(2,'0')}.jpg`),
+  ...Array.from({length:18}, (_,i) => `images/women/${String(i+1).padStart(2,'0')}.jpg`),
+];
+
+let bottleTimer = null;
+
+function startBottleShowcase() {
+  const img      = document.getElementById('bottle-img');
+  const shuffled = [...BOTTLE_IMAGES].sort(() => Math.random() - 0.5);
+  let idx = 0;
+
+  function nextBottle() {
+    if (idx >= shuffled.length) { idx = 0; shuffled.sort(() => Math.random() - 0.5); }
+    img.src = shuffled[idx++];
+    img.style.opacity = '1';
+    bottleTimer = setTimeout(() => {
+      img.style.opacity = '0';
+      bottleTimer = setTimeout(nextBottle, 1000);
+    }, 3000);
+  }
+  nextBottle();
+}
+
+function stopBottleShowcase() {
+  if (bottleTimer) { clearTimeout(bottleTimer); bottleTimer = null; }
+  document.getElementById('bottle-img').style.opacity = '0';
+}
+
 const SLOGANS = [
   "הריח שלך, הסיפור שלך",
   "מכל העולם — אצלנו",
@@ -814,7 +867,7 @@ const SLOGANS = [
 /* ====================================================
    TIMELINE  (ms)
 ==================================================== */
-const DURATION = 65000;
+const DURATION = 106000;
 const TIMELINE = [
   { at:     0, fn: () => { showPhase('phase-logo'); setTimeout(()=> document.getElementById('logo-wrapper').classList.add('pop'), 80); } },
   { at:  5000, fn: () => { transitionPhase('phase-logo','phase-gallery'); buildGallery(); setTimeout(startMarquee, 550); } },
@@ -827,9 +880,10 @@ const TIMELINE = [
   { at: 39000, fn: () => startDroppingBottles() },
   { at: 41500, fn: () => document.getElementById('plane-slogan').classList.add('show') },
   { at: 44000, fn: () => showSlogan(5) },
-  { at: 52500, fn: () => { hidePhase('phase-airplane'); showPhase('phase-contact'); } },
-  { at: 55500, fn: () => showSlogan(6) },
-  { at: 63000, fn: () => { document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
+  { at: 45000, fn: () => startBottleShowcase() },
+  { at: 58500, fn: () => { stopBottleShowcase(); hidePhase('phase-airplane'); showPhase('phase-contact'); } },
+  { at: 61500, fn: () => showSlogan(6) },
+  { at: 101300, fn: () => { fadeOutAudio(2000); document.body.style.transition = 'opacity 2s ease'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.opacity = '0'; })); } },
 ];
 
 /* ====================================================
@@ -1087,22 +1141,33 @@ function startDroppingBottles() {
    BACKGROUND MUSIC
    File: שיר פרסומת- הפרפומריה.mp3  (starts at 2:00)
 ==================================================== */
+let bgAudio = null;
 function initBackgroundMusic() {
   try {
-    const audio = new Audio('שיר פרסומת- הפרפומריה.mp3');
-    audio.volume = 0;
-    audio.loop   = false;
-    audio.currentTime = 120;
-    audio.play().catch(() => {});
+    bgAudio = new Audio('שיר פרסומת- הפרפומריה.mp3');
+    bgAudio.volume = 0;
+    bgAudio.loop   = false;
+    bgAudio.currentTime = 120;
+    bgAudio.play().catch(() => {});
     // Fade in over 1.5 s
     let vol = 0;
     const step = 0.38 / (1500 / 50);
     const fade = setInterval(() => {
       vol = Math.min(vol + step, 0.38);
-      audio.volume = vol;
+      bgAudio.volume = vol;
       if (vol >= 0.38) clearInterval(fade);
     }, 50);
   } catch(e) {}
+}
+function fadeOutAudio(durationMs) {
+  if (!bgAudio) return;
+  const startVol = bgAudio.volume;
+  const steps = durationMs / 50;
+  const step = startVol / steps;
+  const iv = setInterval(() => {
+    bgAudio.volume = Math.max(bgAudio.volume - step, 0);
+    if (bgAudio.volume <= 0) { clearInterval(iv); bgAudio.pause(); }
+  }, 50);
 }
 
 /* ====================================================
