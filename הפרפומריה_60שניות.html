@@ -1084,14 +1084,15 @@ function startDroppingBottles() {
 }
 
 /* ====================================================
-   BACKGROUND MUSIC — Suno AI generated jingle
-   File: audio/background.mp3
+   BACKGROUND MUSIC
+   File: שיר פרסומת- הפרפומריה.mp3  (starts at 2:00)
 ==================================================== */
 function initBackgroundMusic() {
   try {
-    const audio = new Audio('audio/background.mp3');
+    const audio = new Audio('שיר פרסומת- הפרפומריה.mp3');
     audio.volume = 0;
     audio.loop   = false;
+    audio.currentTime = 120;
     audio.play().catch(() => {});
     // Fade in over 1.5 s
     let vol = 0;
